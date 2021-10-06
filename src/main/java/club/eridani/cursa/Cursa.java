@@ -42,28 +42,21 @@ public class Cursa {
 
     @Listener(priority = Priority.HIGHEST)
     public void initialize(InitializationEvent.Initialize event) {
-
         long tookTime = runTiming(() -> {
             Display.setTitle(MOD_NAME + " " + MOD_VERSION);
             FontManager.init();
             log.info("Loading Module Manager");
             //ModuleManager is partial parallel loadable
             ModuleManager.init();
-
             //Parallel load managers
             runBlocking(it -> {
-
                 it.launch(GUIManager::init);
-
                 it.launch(CommandManager::init);
-
                 it.launch(FriendManager::init);
-
                 it.launch(ConfigManager::init);
-
+                it.launch(RPCManager::init);
             });
         });
-
         log.info("Took " + tookTime + "ms to launch Cursa!");
     }
 

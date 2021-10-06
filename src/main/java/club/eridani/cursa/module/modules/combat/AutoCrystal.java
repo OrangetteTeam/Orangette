@@ -20,7 +20,8 @@ import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock;
-import net.minecraft.network.play.server.SPacketSoundEffect;
+import net.minecraft.network.play.client.CPacketUseEntity;
+import net.minecraft.network.play.server.*;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
@@ -56,6 +57,9 @@ public class AutoCrystal extends ModuleBase {
     Setting<Boolean> facePlace = setting("FacePlace", false);
     Setting<Double> blastHealth = setting("BlastHealth", 2.0, 0.0, 8).whenTrue(facePlace);
     Setting<Boolean> spoofRotations = setting("SpoofRotation", true);
+    Setting<Boolean> predictHit = setting("PreditHit" , false);
+    Setting<Integer> offset = setting("Offset" , 0  , 0 , 15);
+    Setting<Integer> amount = setting("Amount" , 0 , 0 , 15);
     Setting<Boolean> renderPlace = setting("RenderBlock", true);
 
     Timer placeTimer = new Timer();
@@ -66,6 +70,7 @@ public class AutoCrystal extends ModuleBase {
     boolean togglePitch = false;
     BlockPos renderBlock = null;
     float yaw, pitch;
+    int lastEntityID = -1;
 
     @Override
     public void onTick() {
@@ -135,6 +140,7 @@ public class AutoCrystal extends ModuleBase {
 
     @Override
     public void onEnable() {
+        lastEntityID = -1;
         placements = 0;
     }
 
@@ -175,6 +181,17 @@ public class AutoCrystal extends ModuleBase {
                 }
             }
         }
+
+        if(event.getPacket() instanceof SPacketSpawnObject)
+            lastEntityID = ((SPacketSpawnObject) event.getPacket()).getEntityID();
+        if(event.getPacket() instanceof SPacketSpawnExperienceOrb)
+            lastEntityID = ((SPacketSpawnExperienceOrb) event.getPacket()).getEntityID();
+        if(event.getPacket() instanceof SPacketSpawnMob)
+            lastEntityID = ((SPacketSpawnMob)event.getPacket()).getEntityID();
+        if(event.getPacket() instanceof SPacketSpawnPainting)
+            lastEntityID = ((SPacketSpawnPainting)event.getPacket()).getEntityID();
+        if(event.getPacket() instanceof SPacketSpawnPlayer)
+            lastEntityID = ((SPacketSpawnPlayer) event.getPacket()).getEntityID();
     }
 
     public EntityEnderCrystal getHittableCrystal() {
@@ -307,6 +324,14 @@ public class AutoCrystal extends ModuleBase {
             mc.player.connection.sendPacket(new CPacketPlayerTryUseItemOnBlock(blockPos, EnumFacing.UP, enumHand, 0, 0, 0));
         }
         placements++;
+
+        if(!predictHit.getValue() || lastEntityID == -1) return;
+        for(int i = offset.getValue(); i < amount.getValue(); i++){
+            CPacketUseEntity cpacket = new CPacketUseEntity();
+            cpacket.entityId = lastEntityID + i + 1;
+            cpacket.action = CPacketUseEntity.Action.ATTACK;
+            mc.player.connection.sendPacket(cpacket);
+        }
     }
 
 }
