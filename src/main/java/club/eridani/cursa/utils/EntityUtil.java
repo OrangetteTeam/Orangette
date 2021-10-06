@@ -14,6 +14,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
+import java.util.Comparator;
+
 public class EntityUtil {
 
     public static Minecraft mc = Minecraft.getMinecraft();
@@ -91,4 +93,13 @@ public class EntityUtil {
         return new float[]{(float) yaw, (float) pitch};
     }
 
+    public static EntityPlayer getNearestPlayer(){
+        return mc.world.playerEntities
+                .stream().filter(e -> e.entityId != mc.player.entityId)
+                .min(Comparator.comparing(PlayerUtil::getDistance)).orElse(null);
+    }
+
+    public static BlockPos getEntityPos(Entity e){
+        return new BlockPos(e.posX , e.posY , e.posZ);
+    }
 }
