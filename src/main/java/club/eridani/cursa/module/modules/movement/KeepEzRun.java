@@ -5,12 +5,11 @@ import club.eridani.cursa.common.annotations.Parallel;
 import club.eridani.cursa.module.Category;
 import club.eridani.cursa.module.ModuleBase;
 
-@Parallel(runnable = true)
-@Module(name = "Sprint", category = Category.MOVEMENT)
-public class Sprint extends ModuleBase {
-
+@Parallel
+@Module(name="KeepEzRun", category = Category.MOVEMENT)
+public class KeepEzRun extends ModuleBase {
     @Override
-    public void onRenderTick() {
+    public void onTick() {
         if (mc.player == null) return;
         mc.player.setSprinting(!mc.player.collidedHorizontally && mc.player.moveForward > 0);
     }
