@@ -20,8 +20,8 @@ import static club.eridani.cursa.concurrent.TaskManager.*;
  */
 public class Cursa {
 
-    public static final String MOD_NAME = "Cursa";
-    public static final String MOD_VERSION = "b5";
+    public static final String MOD_NAME = "Orangette";
+    public static final String MOD_VERSION = "0.11";
 
     public static final String AUTHOR = "B_312";
     public static final String GITHUB = "https://github.com/SexyTeam/Cursa";
@@ -43,7 +43,7 @@ public class Cursa {
     @Listener(priority = Priority.HIGHEST)
     public void initialize(InitializationEvent.Initialize event) {
         long tookTime = runTiming(() -> {
-            Display.setTitle(MOD_NAME + " " + MOD_VERSION);
+            Display.setTitle(MOD_NAME + " b" + MOD_VERSION);
             FontManager.init();
             log.info("Loading Module Manager");
             //ModuleManager is partial parallel loadable
