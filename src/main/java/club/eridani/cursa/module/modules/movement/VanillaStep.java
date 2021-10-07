@@ -10,12 +10,17 @@ import club.eridani.cursa.setting.Setting;
 @Module(name = "VanillaStep", category = Category.MOVEMENT)
 public class VanillaStep extends ModuleBase {
 
-    Setting<Integer> height = setting("Height",2,0,10);
+    Setting<Double> height = setting("Height",2D,0D,10D);
 
     @Override
     public void onTick() {
         if (mc.player == null) return;
-        mc.player.stepHeight = height.getValue();
-
+        mc.player.stepHeight = height.getValue().floatValue();
     }
-     }
+
+    @Override
+    public void onDisable() {
+        mc.player.stepHeight = 0.5F;
+    }
+
+}
