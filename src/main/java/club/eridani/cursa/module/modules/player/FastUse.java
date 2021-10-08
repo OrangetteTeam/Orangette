@@ -11,15 +11,14 @@ public class FastUse extends ModuleBase {
 
     @Override
     public void onTick(){
-        if (mc.player == null)return;
+        if (mc.player == null) return;
         mc.rightClickDelayTimer = 0;
 
     }
 
     @Override
     public void onDisable() {
-
-        if (mc.player == null)return;
+        if (mc.player == null) return;
         mc.rightClickDelayTimer = 10;
 
     }
