@@ -21,7 +21,7 @@ public class CustomChat extends ModuleBase {
         if (event.packet instanceof CPacketChatMessage) {
             String s = ((CPacketChatMessage) event.getPacket()).getMessage();
             if (s.startsWith("/") && !commands.getValue()) return;
-            s += Cursa.CHAT_SUFFIX;
+            s += " | ᴏʀᴀɴɢᴇᴛᴛᴇ";
             if (s.length() >= 256) s = s.substring(0, 256);
             ((AccessorCPacketChatMessage) event.getPacket()).setMessage(s);
         }
