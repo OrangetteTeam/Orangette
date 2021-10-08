@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GuiIngameForge.class)
 public class MixinGuiIngameForge {
-    @Inject(method = "renderCrosshairs" , at = @At(value = "HEAD") , cancellable = true)
+    @Inject(method = "renderCrosshairs" , at = @At(value = "HEAD") , cancellable = true , remap = false)
     public void renderCrosshairs(float partialTicks , CallbackInfo info){
         if(NoRender.INSTANCE.isEnabled() && NoRender.INSTANCE.crossHair.getValue()) info.cancel();
     }
