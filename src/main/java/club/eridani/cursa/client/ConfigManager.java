@@ -19,13 +19,13 @@ import static club.eridani.cursa.utils.ListUtil.listOf;
 @SuppressWarnings("ResultOfMethodCallIgnored")
 public class ConfigManager {
 
-    private static final String CONFIG_PATH = "Cursa/config/";
+    private static final String CONFIG_PATH = "Orangette/config/";
     private static final Gson gsonPretty = new GsonBuilder().setPrettyPrinting().create();
     private static final JsonParser jsonParser = new JsonParser();
 
-    private final File CLIENT_FILE = new File(CONFIG_PATH + "Cursa_Client.json");
-    private final File GUI_FILE = new File(CONFIG_PATH + "Cursa_GUI.json");
-    private final File MODULE_FILE = new File(CONFIG_PATH + "Cursa_Module.json");
+    private final File CLIENT_FILE = new File(CONFIG_PATH + "Orangette.json");
+    private final File GUI_FILE = new File(CONFIG_PATH + "Orangette_GUI.json");
+    private final File MODULE_FILE = new File(CONFIG_PATH + "Orangette_Module.json");
 
     private final List<File> configList = listOf(CLIENT_FILE, GUI_FILE, MODULE_FILE);
 
