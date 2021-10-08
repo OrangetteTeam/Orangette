@@ -25,7 +25,7 @@ public class FakePlayer extends ModuleBase {
             "YOSSHILOL",
             "Toshimichi0915",
             "Hiyokomame0144",
-            "Cyri").whenFalse(customMode);
+            "Nard_3w").whenFalse(customMode);
 
     @Override
     public void onEnable() {
