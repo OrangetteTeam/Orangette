@@ -38,7 +38,7 @@ import java.util.stream.Collectors;
 import static club.eridani.cursa.utils.CrystalUtil.calculateDamage;
 import static org.lwjgl.opengl.GL11.GL_QUADS;
 
-@Module(name = "AutoCrystal", category = Category.COMBAT)
+@Module(name = "OrangetteAura", category = Category.COMBAT)
 public class AutoCrystal extends ModuleBase {
 
     Setting<Boolean> autoSwitch = setting("AutoSwitch", false);

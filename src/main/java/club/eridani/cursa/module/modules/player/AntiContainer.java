@@ -13,7 +13,7 @@ import net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock;
 import net.minecraft.util.math.BlockPos;
 
 @Parallel
-@Module(name = "AntiContainer", category = Category.PLAYER)
+@Module(name = "StorageRock", category = Category.PLAYER)
 public class AntiContainer extends ModuleBase {
 
     Setting<Boolean> Chest = setting("Chest", true);
