@@ -1,11 +1,16 @@
 package club.eridani.cursa.client;
 
+import club.eridani.cursa.Cursa;
 import club.eridani.cursa.common.annotations.Module;
 import club.minnced.discord.rpc.DiscordEventHandlers;
 import club.minnced.discord.rpc.DiscordRPC;
 import club.minnced.discord.rpc.DiscordRichPresence;
+import net.minecraft.client.Minecraft;
+
+import java.util.Objects;
 
 public class RPCManager {
+    public static Minecraft mc = Minecraft.getMinecraft();
     public static RPCManager INSTANCE;
     private Thread _thread = null;
 
@@ -29,12 +34,13 @@ public class RPCManager {
             while (!Thread.currentThread().isInterrupted())
             {
                 lib.Discord_RunCallbacks();
-                presence.details = "AAAAAAAAAAA";
-                presence.state = "BBBBBBBBBBBBB";
+                presence.details = getDetails();
+                presence.state = getState();
                 presence.largeImageKey = "logo";
-                presence.largeImageText = "CCCCCCCCCCCCC";
+                presence.largeImageText = Cursa.MOD_VERSION;
+                lib.Discord_UpdatePresence(presence);
+
                 try {
-                    lib.Discord_UpdatePresence(presence);
                     Thread.sleep(3000);
                 }
                 catch (InterruptedException ignored) {
@@ -49,5 +55,13 @@ public class RPCManager {
     {
         DiscordRPC.INSTANCE.Discord_Shutdown();
         _thread = null;
+    }
+
+    public String getDetails(){
+        return Objects.isNull(mc.player) ? "MainMenu" : mc.player.getName();
+    }
+
+    public String getState(){
+        return Objects.isNull(mc.player) ? "" :  Objects.isNull(mc.getCurrentServerData()) ? "SinglePlayer" : mc.getCurrentServerData().serverIP;
     }
 }
