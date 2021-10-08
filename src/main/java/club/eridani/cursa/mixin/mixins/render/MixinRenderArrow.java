@@ -12,6 +12,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinRenderArrow {
     @Inject(method = "doRender" , at = @At("HEAD") , cancellable = true)
     public void doRender(EntityArrow entity, double x, double y, double z, float entityYaw, float partialTicks , CallbackInfo info){
-        if(NoRender.INSTANCE.arrow.getValue()) info.cancel();
+        if(NoRender.INSTANCE.isEnabled() && NoRender.INSTANCE.arrow.getValue()) info.cancel();
     }
 }
