@@ -20,7 +20,9 @@
     "render.MixinRenderXPOrb" ,
     "render.MixinLayerArmorBase" ,
     "render.MixinMapItemRenderer" ,
-    "render.MixinRenderItemFrame"
+    "render.MixinRenderItemFrame" ,
+    "render.MixinGuiIngame" ,
+    "render.MixinGuiIngameForge"
   ],
   "client": [
     "render.MixinModelBiped"

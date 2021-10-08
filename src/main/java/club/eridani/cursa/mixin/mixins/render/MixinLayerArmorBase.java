@@ -12,6 +12,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinLayerArmorBase {
     @Inject(method = "doRenderLayer" , at = @At(value = "HEAD") , cancellable = true)
     public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale , CallbackInfo info){
-        if(NoRender.INSTANCE.armor.getValue()) info.cancel();
+        if(NoRender.INSTANCE.isEnabled() && NoRender.INSTANCE.armor.getValue()) info.cancel();
     }
 }
