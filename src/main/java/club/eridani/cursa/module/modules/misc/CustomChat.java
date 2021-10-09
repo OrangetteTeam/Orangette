@@ -11,7 +11,7 @@ import club.eridani.cursa.setting.Setting;
 import net.minecraft.network.play.client.CPacketChatMessage;
 
 @Parallel
-@Module(name = "CustomChat", category = Category.MISC)
+@Module(name = "ChatSuffix", category = Category.MISC)
 public class CustomChat extends ModuleBase {
 
     Setting<Boolean> commands = setting("Commands", false);

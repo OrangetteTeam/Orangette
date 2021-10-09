@@ -38,7 +38,7 @@ import java.util.stream.Collectors;
 import static club.eridani.cursa.utils.CrystalUtil.calculateDamage;
 import static org.lwjgl.opengl.GL11.GL_QUADS;
 
-@Module(name = "AutoCrystal", category = Category.COMBAT)
+@Module(name = "OrangetteAura", category = Category.COMBAT)
 public class AutoCrystal extends ModuleBase {
 
     Setting<Boolean> autoSwitch = setting("AutoSwitch", false);
@@ -48,7 +48,7 @@ public class AutoCrystal extends ModuleBase {
     Setting<Integer> placeDelay = setting("PlaceDelay", 50, 0, 1000);
     Setting<Integer> explodeDelay = setting("ExplodeDelay", 35, 0, 1000);
     Setting<Double> placeRange = setting("PlaceRange", 4.5, 0, 8);
-    Setting<Double> breakRange = setting("PlaceRange", 5.5, 0, 8);
+    Setting<Double> breakRange = setting("BreakRange", 5.5, 0, 8);
     Setting<Double> distance = setting("Distance", 7.0, 0, 16);
     Setting<Double> placeMinDmg = setting("PlaceMinDmg", 6.0, 0, 36);
     Setting<Double> placeMaxSelf = setting("PlaceMaxSelf", 8.0, 0, 36);
