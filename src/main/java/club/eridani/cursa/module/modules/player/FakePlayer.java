@@ -18,14 +18,14 @@ public class FakePlayer extends ModuleBase {
     public static String customName = "None";
     Setting<Integer> health = setting("Health", 10, 0, 36);
     Setting<Boolean> customMode = setting("CustomName", false);
-    Setting<String> mode = setting("Name", "B_312",
-            "B_312",
-            "popbob",
-            "jared2013",
-            "bachi",
-            "dot5",
-            "FitMC",
-            "Cyri").whenFalse(customMode);
+    Setting<String> mode = setting("Name", "YOSSHILOL",
+            "Natsumikan2782",
+            "fast_mac",
+            "SHGR_",
+            "YOSSHILOL",
+            "Toshimichi0915",
+            "Hiyokomame0144",
+            "Nard_3w").whenFalse(customMode);
 
     @Override
     public void onEnable() {

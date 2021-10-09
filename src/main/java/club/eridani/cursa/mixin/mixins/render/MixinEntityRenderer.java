@@ -4,6 +4,7 @@ import club.eridani.cursa.Cursa;
 import club.eridani.cursa.event.decentraliized.DecentralizedRenderWorldEvent;
 import club.eridani.cursa.event.events.render.HudOverlayEvent;
 import club.eridani.cursa.event.events.render.RenderWorldEvent;
+import club.eridani.cursa.module.modules.render.NoRender;
 import net.minecraft.client.renderer.EntityRenderer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -35,6 +36,11 @@ public class MixinEntityRenderer {
         RenderWorldEvent event = new RenderWorldEvent(partialTicks, pass);
         DecentralizedRenderWorldEvent.instance.post(event);
         Cursa.EVENT_BUS.post(event);
+    }
+
+    @Inject(method = "setupFog(IF)V" , at = @At(value = "HEAD") , cancellable = true)
+    public void setupFog(int startCoords, float partialTicks , CallbackInfo info){
+        if(NoRender.INSTANCE.isEnabled() && NoRender.INSTANCE.fog.getValue()) info.cancel();
     }
 
 }

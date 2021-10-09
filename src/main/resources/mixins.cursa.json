@@ -15,7 +15,14 @@
     "entity.MixinEntityPlayerSP",
     "network.MixinNetWork",
     "render.MixinEntityRenderer",
-    "render.MixinGuiSubtitleOverlay"
+    "render.MixinGuiSubtitleOverlay" ,
+    "render.MixinRenderFallingBlock" ,
+    "render.MixinRenderXPOrb" ,
+    "render.MixinLayerArmorBase" ,
+    "render.MixinMapItemRenderer" ,
+    "render.MixinRenderItemFrame" ,
+    "render.MixinGuiIngame" ,
+    "render.MixinGuiIngameForge"
   ],
   "client": [
     "render.MixinModelBiped"
