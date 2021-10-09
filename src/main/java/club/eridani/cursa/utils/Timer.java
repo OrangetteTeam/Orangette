@@ -78,4 +78,8 @@ public final class Timer {
         return System.currentTimeMillis() - time;
     }
 
+    public boolean delay(final float milliSec) {
+        return this.getTime() - this.getTime() >= milliSec;
+    }
+
 }

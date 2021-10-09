@@ -1,10 +1,12 @@
 package club.eridani.cursa.client;
 
 import club.eridani.cursa.Cursa;
+import club.eridani.cursa.common.annotations.Module;
 import club.eridani.cursa.common.annotations.Parallel;
 import club.eridani.cursa.concurrent.event.Listener;
 import club.eridani.cursa.concurrent.event.Priority;
 import club.eridani.cursa.event.events.client.KeyEvent;
+import club.eridani.cursa.module.Category;
 import club.eridani.cursa.module.ModuleBase;
 import club.eridani.cursa.utils.ClassUtil;
 
@@ -58,6 +60,14 @@ public class ModuleManager {
         }
         Cursa.log.info("Module " + targetName + " is not exist.Please check twice!");
         return null;
+    }
+
+    public List<ModuleBase> getModulesByCategory(Category category) {
+        List<ModuleBase> modules = new ArrayList<>();
+        for(ModuleBase m : this.moduleList){
+            if(m.category == category) modules.add(m);
+        }
+        return modules;
     }
 
     private void loadModules() {

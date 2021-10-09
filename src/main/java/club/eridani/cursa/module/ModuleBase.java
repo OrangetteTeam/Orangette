@@ -35,6 +35,8 @@ public class ModuleBase extends ListenableImpl {
 
     public Minecraft mc = Minecraft.getMinecraft();
 
+    public float optionAnim, optionAnimNow;
+
     public ModuleBase() {
         this.name = getAnnotation().name();
         this.category = getAnnotation().category();

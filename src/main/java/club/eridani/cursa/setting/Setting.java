@@ -10,6 +10,7 @@ public class Setting<T> {
     private final T defaultValue;
     protected T value;
     private final List<BooleanSupplier> visibilities = new ArrayList<>();
+    public float optionAnimNow, optionAnim;
 
     public Setting(String name, T defaultValue) {
         this.name = name;
