@@ -23,7 +23,7 @@ public class ClickGUI extends ModuleBase {
     public void onEnable() {
         if (mc.player != null) {
             if (!(mc.currentScreen instanceof CursaClickGUI)) {
-                mc.displayGuiScreen(new VapeLiteClickGUI());
+                mc.displayGuiScreen(new CursaClickGUI());
             }
         }
     }
