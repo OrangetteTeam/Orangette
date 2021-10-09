@@ -4,6 +4,7 @@ import club.eridani.cursa.client.ConfigManager;
 import club.eridani.cursa.common.annotations.Module;
 import club.eridani.cursa.common.annotations.Parallel;
 import club.eridani.cursa.gui.CursaClickGUI;
+import club.eridani.cursa.gui.vapelite.VapeLiteClickGUI;
 import club.eridani.cursa.module.Category;
 import club.eridani.cursa.module.ModuleBase;
 import org.lwjgl.input.Keyboard;
@@ -22,7 +23,7 @@ public class ClickGUI extends ModuleBase {
     public void onEnable() {
         if (mc.player != null) {
             if (!(mc.currentScreen instanceof CursaClickGUI)) {
-                mc.displayGuiScreen(new CursaClickGUI());
+                mc.displayGuiScreen(new VapeLiteClickGUI());
             }
         }
     }
