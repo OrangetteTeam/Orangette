@@ -11,7 +11,7 @@ import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.network.play.client.CPacketPlayerDigging;
 
 @Parallel
-@Module(name = "GODBOW", category = Category.COMBAT)
+@Module(name = "GodBow", category = Category.COMBAT)
 public class GODBOW extends ModuleBase {
 
     @Override
