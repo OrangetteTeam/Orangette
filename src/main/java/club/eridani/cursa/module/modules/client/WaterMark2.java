@@ -13,15 +13,15 @@ import net.minecraft.util.ResourceLocation;
 @Module(name = "WaterMark2", category = Category.CLIENT)
 public class WaterMark2 extends ModuleBase {
 
-    private final Setting<Integer> x = setting("X", 0, 0, 700);
-    private final Setting<Integer> y = setting("Y", 0, 0, 420);
+    private final Setting<Integer> x = setting("X", 0, 0, 1500);
+    private final Setting<Integer> y = setting("Y", 0, 0, 1000);
 
 
     @Override
     public void onRender(RenderOverlayEvent event){
 
         mc.getTextureManager().bindTexture(new ResourceLocation("orangette/logo.png"));
-        Gui.drawModalRectWithCustomSizedTexture(x.getValue(), y.getValue(),0F,0F,250,98,250,98);
+        Gui.drawModalRectWithCustomSizedTexture(x.getValue(), y.getValue(),0F,0F,125,49,125,49);
 
     }
 
