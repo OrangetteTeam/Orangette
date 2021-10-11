@@ -9,10 +9,13 @@ public class FontManager {
 
     public static CFontRenderer iconFont;
     public static CFontRenderer fontRenderer;
+    public static CFontRenderer jelloFont , jelloLargeFont;
 
     public static void init() {
         iconFont = new CFontRenderer(new CFont.CustomFont("/assets/minecraft/fonts/Icon.ttf", 22f, Font.PLAIN), true, false);
         fontRenderer = new CFontRenderer(new CFont.CustomFont("/assets/minecraft/fonts/Comfortaa-Bold.ttf", 18f, Font.PLAIN), true, false);
+        jelloFont = new CFontRenderer(new CFont.CustomFont("/assets/minecraft/fonts/JelloLight.ttf", 19, Font.PLAIN), true, false);
+        jelloLargeFont = new CFontRenderer(new CFont.CustomFont("/assets/minecraft/fonts/JelloLight.ttf", 23f, Font.PLAIN), true, false);
     }
 
     public static int getWidth(String str){

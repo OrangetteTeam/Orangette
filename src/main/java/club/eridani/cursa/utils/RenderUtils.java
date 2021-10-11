@@ -17,6 +17,7 @@ public class RenderUtils {
         GlStateManager.enableAlpha();
         GlStateManager.enableBlend();
         GL11.glDisable(3553);
+        GL11.glEnable(GL11.GL_LINE_SMOOTH);
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
         GlStateManager.alphaFunc(516, 0.001f);
         Tessellator tess = Tessellator.getInstance();
@@ -35,6 +36,7 @@ public class RenderUtils {
         GlStateManager.disableBlend();
         GlStateManager.alphaFunc(516, 0.1f);
         GlStateManager.disableAlpha();
+        GL11.glDisable(GL11.GL_LINE_SMOOTH);
         GL11.glEnable(3553);
     }
 

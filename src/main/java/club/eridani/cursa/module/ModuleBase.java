@@ -17,6 +17,7 @@ import net.minecraftforge.common.MinecraftForge;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class ModuleBase extends ListenableImpl {
 
@@ -165,5 +166,8 @@ public class ModuleBase extends ListenableImpl {
         throw new IllegalStateException("No Annotation on class " + this.getClass().getCanonicalName() + "!");
     }
 
+    public boolean nullCheck(){
+        return Objects.isNull(mc.player) || Objects.isNull(mc.world);
+    }
 
 }
