@@ -28,10 +28,12 @@ public class NumberSlider extends Component {
         this.x = x;
         this.y = y;
         drawString(setting.getName() , x + 10 , getCenter(y , height , getFontHeight()) , ColorUtil.toRGBA(0, 0, 0, 255));
+        float w = getFontWidth(String.format("%.1f", setting.getValue().doubleValue()));
+        drawString(String.format("%.1f", setting.getValue().doubleValue()) , x + width - 10 - w, getCenter(y , height , getFontHeight()) , ColorUtil.toRGBA(0, 0, 0, 255));
         sliderWidth = 50;
         sliderHeight = 2;
-        sliderX = x + width - sliderWidth - 10;
-        sliderY = getCenter(y , height , sliderHeight);
+        sliderX = x + width - sliderWidth - 40;
+        sliderY = getCenter(y , height , sliderHeight) - 1;
         RenderUtil.drawRect(sliderX , sliderY , sliderX + sliderWidth , sliderY + sliderHeight  , ColorUtil.toRGBA(215,226,235, 255));
         double percentBar = (setting.getValue().doubleValue() - setting.getMin().doubleValue()) / (setting.getMax().doubleValue() - setting.getMin().doubleValue());
         double tempWidth = (sliderWidth) * percentBar;

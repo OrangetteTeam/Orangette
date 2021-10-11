@@ -81,7 +81,7 @@ public class SigmaGUI extends GuiScreen {
         RenderUtil.drawRect(0 , 0 , 9999 , 9999 , ColorUtil.toRGBA(0 , 0 ,0 , (int)transparency));
         if(settingWindowVisible){
             windowWidth = 200;
-            windowHeight = 230;
+            windowHeight = 240;
             windowX = getCenter(0 , sr.getScaledWidth() , windowWidth);
             windowY = getCenter(0 , sr.getScaledHeight() , windowHeight);
             wScale = smoothTrans(wScale , windowScale);
