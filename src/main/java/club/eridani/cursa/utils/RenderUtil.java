@@ -2,6 +2,9 @@ package club.eridani.cursa.utils;
 
 import club.eridani.cursa.client.FontManager;
 import club.eridani.cursa.gui.font.CFontRenderer;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -11,6 +14,8 @@ import org.lwjgl.opengl.GL11;
 import java.awt.*;
 
 public class RenderUtil {
+    private static Minecraft mc = Minecraft.getMinecraft();
+
     public static void drawRect(float left, float top, float right, float bottom , int color) {
         float alpha = (float) (color >> 24 & 0xFF) / 255.0f;
         float red = (float) (color >> 16 & 0xFF) / 255.0f;
@@ -79,6 +84,26 @@ public class RenderUtil {
         GlStateManager.enableTexture2D();
     }
 
+    public static void drawRoundedRect(float x, float y, float x2, float y2, final float round, final int color) {
+        x += (float) (round / 2.0f + 0.5);
+        y += (float) (round / 2.0f + 0.5);
+        x2 -= (float) (round / 2.0f + 0.5);
+        y2 -= (float) (round / 2.0f + 0.5);
+        Gui.drawRect((int) x, (int) y, (int) x2, (int) y2, color);
+        RenderUtils.drawCircle(x2 - round / 2.0f, y + round / 2.0f, round, color);
+        RenderUtils.drawCircle(x + round / 2.0f, y2 - round / 2.0f, round, color);
+        RenderUtils.drawCircle(x + round / 2.0f, y + round / 2.0f, round, color);
+        RenderUtils.drawCircle(x2 - round / 2.0f, y2 - round / 2.0f, round, color);
+        Gui.drawRect((int) (x - round / 2.0f - 0.5f), (int) (y + round / 2.0f), (int) x2, (int) (y2 - round / 2.0f),
+                color);
+        Gui.drawRect((int) x, (int) (y + round / 2.0f), (int) (x2 + round / 2.0f + 0.5f), (int) (y2 - round / 2.0f),
+                color);
+        Gui.drawRect((int) (x + round / 2.0f), (int) (y - round / 2.0f - 0.5f), (int) (x2 - round / 2.0f),
+                (int) (y2 - round / 2.0f), color);
+        Gui.drawRect((int) (x + round / 2.0f), (int) y, (int) (x2 - round / 2.0f), (int) (y2 + round / 2.0f + 0.5f),
+                color);
+    }
+
     public static float drawString(String str, float x, float y, Color color, boolean shadow) {
         CFontRenderer font = FontManager.fontRenderer;
         if (shadow)
@@ -103,4 +128,52 @@ public class RenderUtil {
         return (font.getHeight() - 1);
     }
 
+    public static void scissor(float x , float y , float width , float height , float guiScale){
+        float scale = computeGuiScale() * guiScale;
+        GL11.glScissor(0, (int) (mc.displayHeight - (y + height) * scale), (int)((width + x) * scale), (int)(height * scale));
+    }
+
+    private static float computeGuiScale() {
+        Minecraft mc = Minecraft.getMinecraft();
+        int scaleFactor = 1;
+        int k = mc.gameSettings.guiScale;
+        if (k == 0) k = 1000;
+        while (scaleFactor < k && mc.displayWidth / (scaleFactor + 1) >= 320 && mc.displayHeight / (scaleFactor + 1) >= 240) ++scaleFactor;
+        return scaleFactor;
+    }
+
+    private static float guiToScreen(float a){
+        final ScaledResolution scaledresolution = new ScaledResolution(mc);
+        final double scaleFactor = scaledresolution.getScaleFactor();
+        return (float) (a * scaleFactor);
+    }
+
+    public static void drawShader(int x1 , int y1 , int x2 , int y2){
+        int a = 50;
+        drawGradientRect(x1 - 5, y1 , x1, y2
+                , ColorUtil.toRGBA(0 , 0 , 0 , 0) , ColorUtil.toRGBA(0 , 0 , 0 , a)
+                , ColorUtil.toRGBA(0 , 0 , 0 , 0) , ColorUtil.toRGBA(0 , 0 , 0 , a));
+        drawGradientRect(x2, y1 , x2 + 5, y2
+                , ColorUtil.toRGBA(0 , 0 , 0 , a) , ColorUtil.toRGBA(0 , 0 , 0 , 0)
+                , ColorUtil.toRGBA(0 , 0 , 0 , a) , ColorUtil.toRGBA(0 , 0 , 0 , 0));
+        drawGradientRect(x1 , y1 - 5 , x2 , y1
+                , ColorUtil.toRGBA(0 , 0 , 0 , 0) , ColorUtil.toRGBA(0 , 0 , 0 , 0)
+                , ColorUtil.toRGBA(0 , 0 , 0 , a) , ColorUtil.toRGBA(0 , 0 , 0 , a));
+        drawGradientRect(x1 , y2 , x2 , y2 + 5
+                , ColorUtil.toRGBA(0 , 0 , 0 , a) , ColorUtil.toRGBA(0 , 0 , 0 , a)
+                , ColorUtil.toRGBA(0 , 0 , 0 , 0) , ColorUtil.toRGBA(0 , 0 , 0 , 0));
+        //corner
+        drawGradientRect(x1 - 5 , y1 - 5 , x1 , y1
+                , ColorUtil.toRGBA(0 , 0 , 0 , 0) , ColorUtil.toRGBA(0 , 0 , 0 , 0)
+                , ColorUtil.toRGBA(0 , 0 , 0 , 0) , ColorUtil.toRGBA(0 , 0 , 0 , a));
+        drawGradientRect(x2 , y1 - 5 , x2 + 5 , y1
+                , ColorUtil.toRGBA(0 , 0 , 0 , 0) , ColorUtil.toRGBA(0 , 0 , 0 , 0)
+                , ColorUtil.toRGBA(0 , 0 , 0 , a) , ColorUtil.toRGBA(0 , 0 , 0 , 0));
+        drawGradientRect(x1 - 5 , y2 , x1 , y2 + 5
+                , ColorUtil.toRGBA(0 , 0 , 0 , 0) , ColorUtil.toRGBA(0 , 0 , 0 , a)
+                , ColorUtil.toRGBA(0 , 0 , 0 , 0) , ColorUtil.toRGBA(0 , 0 , 0 , 0));
+        drawGradientRect(x2 , y2 , x2 + 5 , y2 + 5
+                , ColorUtil.toRGBA(0 , 0 , 0 , a) , ColorUtil.toRGBA(0 , 0 , 0 , 0)
+                , ColorUtil.toRGBA(0 , 0 , 0 , 0) , ColorUtil.toRGBA(0 , 0 , 0 , 0));
+    }
 }
