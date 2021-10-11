@@ -77,6 +77,10 @@ public class EntityUtil {
         return e instanceof EntityLivingBase;
     }
 
+    public static float[] calculateLookAt(Vec3d pos, EntityPlayer me) {
+        return calculateLookAt(pos.x, pos.y, pos.z, me);
+    }
+
     public static float[] calculateLookAt(double px, double py, double pz, EntityPlayer me) {
         double dirX = me.posX - px;
         double dirY = me.posY - py;
