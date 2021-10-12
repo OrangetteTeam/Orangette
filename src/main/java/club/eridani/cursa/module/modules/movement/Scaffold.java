@@ -1,12 +1,16 @@
 package club.eridani.cursa.module.modules.movement;
 
 import club.eridani.cursa.common.annotations.Module;
+import club.eridani.cursa.concurrent.event.Listener;
+import club.eridani.cursa.concurrent.event.Priority;
 import club.eridani.cursa.event.events.network.PacketEvent;
+import club.eridani.cursa.event.events.render.RenderModelEvent;
 import club.eridani.cursa.module.Category;
 import club.eridani.cursa.module.ModuleBase;
 import club.eridani.cursa.setting.Setting;
 import club.eridani.cursa.utils.EntityUtil;
 import net.minecraft.block.Block;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.client.CPacketAnimation;
@@ -57,7 +61,7 @@ public class Scaffold extends ModuleBase {
         data = null;
         boolean dow = false;
         if (down.getValue()) {
-            mc.gameSettings.keyBindSneak.updateKeyBindState();
+            KeyBinding.updateKeyBindState();
             dow = mc.gameSettings.keyBindSneak.pressed;
             mc.gameSettings.keyBindSneak.pressed = false;
             mc.player.setSneaking(false);
@@ -85,9 +89,8 @@ public class Scaffold extends ModuleBase {
                             }
                         }
                         if (aa) continue;
-                        BlockPos aaaa = pos;
                         d = dist;
-                        data = new BlockData(aaaa.offset(faa), reverse(faa));
+                        data = new BlockData(pos.offset(faa), reverse(faa));
                     }
                 }
             }
@@ -103,6 +106,7 @@ public class Scaffold extends ModuleBase {
             mc.player.inventory.currentItem = l;
             mc.getConnection().sendPacket(new CPacketAnimation(EnumHand.MAIN_HAND));
         }
+        mc.player.setRotationYawHead(yaw);
     }
 
     public EnumFacing reverse(EnumFacing facing)
@@ -140,5 +144,11 @@ public class Scaffold extends ModuleBase {
             this.pos = pos;
             this.face = face;
         }
+    }
+
+    @Listener(priority = Priority.PARALLEL)
+    public void renderModelRotation(RenderModelEvent event) {
+        event.rotating = true;
+        event.pitch = pitch;
     }
 }
