@@ -23,19 +23,15 @@ public class BurrowEsp extends ModuleBase {
     @Override
     public void onRenderWorld(RenderEvent event) {
 
-        for (Entity entity:mc.world.playerEntities){
-        BlockPos pos = EntityUtil.getEntityPos(entity);
-
-            int color = ColorUtil.toRGBA(GUIManager.getRed(), GUIManager.getGreen(), GUIManager.getBlue() ,GUIManager.getAlpha());
-
-
-            if (BlockUtil.getBlock(pos)!=Blocks.AIR){
-
+        for (Entity entity:mc.world.playerEntities) {
+            BlockPos pos = EntityUtil.getEntityPos(entity);
+            int color = ColorUtil.toRGBA(GUIManager.getRed(), GUIManager.getGreen(), GUIManager.getBlue() ,60);
+            if (BlockUtil.getBlock(pos) != Blocks.AIR){
                 CursaTessellator.prepare(GL_QUADS);
                 CursaTessellator.drawFullBox(pos, 1f, color);
                 CursaTessellator.release();
-
+            }
         }
-             }
-                 }
-                    }
+    }
+
+}
