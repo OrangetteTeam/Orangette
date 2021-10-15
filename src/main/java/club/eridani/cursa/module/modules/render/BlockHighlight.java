@@ -20,7 +20,7 @@ public class BlockHighlight extends ModuleBase {
     public void onRenderWorld(RenderEvent event) {
 
         BlockPos pos = mc.objectMouseOver.getBlockPos();
-        int color = ColorUtil.toRGBA(GUIManager.getRed(), GUIManager.getGreen(), GUIManager.getBlue(), GUIManager.getAlpha());
+        int color = ColorUtil.toRGBA(GUIManager.getRed(), GUIManager.getGreen(), GUIManager.getBlue(), 60);
         if (mc.objectMouseOver != null && mc.objectMouseOver.typeOfHit == RayTraceResult.Type.BLOCK && pos != null) {
 
             CursaTessellator.prepare(GL_QUADS);
@@ -30,6 +30,3 @@ public class BlockHighlight extends ModuleBase {
         }
     }
 }
-
-
-
