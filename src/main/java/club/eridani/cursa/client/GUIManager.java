@@ -1,19 +1,18 @@
 package club.eridani.cursa.client;
 
 import club.eridani.cursa.Cursa;
-import club.eridani.cursa.concurrent.task.VoidTask;
-import club.eridani.cursa.module.modules.client.GUI;
+import club.eridani.cursa.module.modules.client.Gui;
 import club.eridani.cursa.utils.ColorUtil;
 
-import java.awt.*;
+import java.awt.Color;
 
 public class GUIManager {
 
-    public static GUI guiSetting;
+    public static Gui guiSetting;
 
     public static void init() {
         Cursa.log.info("Loading GUI Manager");
-        guiSetting = (GUI) ModuleManager.getModule(GUI.class);
+        guiSetting = (Gui) ModuleManager.getModule(Gui.class);
     }
 
     public static boolean isParticle() {

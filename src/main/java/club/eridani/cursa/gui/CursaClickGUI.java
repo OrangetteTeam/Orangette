@@ -2,14 +2,14 @@ package club.eridani.cursa.gui;
 
 import club.eridani.cursa.client.GUIManager;
 import club.eridani.cursa.client.ModuleManager;
-import club.eridani.cursa.module.modules.client.ClickGUI;
+import club.eridani.cursa.module.modules.client.ClickGui;
 import club.eridani.cursa.utils.particles.ParticleSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ResourceLocation;
 
-import java.awt.*;
+import java.awt.Color;
 
 public class CursaClickGUI extends GuiScreen {
 
@@ -34,8 +34,8 @@ public class CursaClickGUI extends GuiScreen {
     public void onGuiClosed() {
         if (Minecraft.getMinecraft().entityRenderer.getShaderGroup() != null)
             Minecraft.getMinecraft().entityRenderer.getShaderGroup().deleteShaderGroup();
-        if (ModuleManager.getModule(ClickGUI.class).isEnabled()) {
-            ModuleManager.getModule(ClickGUI.class).disable();
+        if (ModuleManager.getModule(ClickGui.class).isEnabled()) {
+            ModuleManager.getModule(ClickGui.class).disable();
         }
     }
 

@@ -8,7 +8,7 @@ import net.minecraft.util.math.BlockPos;
 public class BlockUtil {
     private static Minecraft mc = Minecraft.getMinecraft();
 
-    public static Block getBlock(BlockPos pos){
+    public static Block getBlock(BlockPos pos) {
         return getBlockState(pos).getBlock();
     }
 

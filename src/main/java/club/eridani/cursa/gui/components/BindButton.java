@@ -1,11 +1,11 @@
 package club.eridani.cursa.gui.components;
 
 import club.eridani.cursa.client.GUIManager;
+import club.eridani.cursa.client.ModuleManager;
 import club.eridani.cursa.gui.Component;
 import club.eridani.cursa.gui.Panel;
-import club.eridani.cursa.client.ModuleManager;
 import club.eridani.cursa.module.ModuleBase;
-import club.eridani.cursa.module.modules.client.ClickGUI;
+import club.eridani.cursa.module.modules.client.ClickGui;
 import club.eridani.cursa.utils.SoundUtil;
 import net.minecraft.client.gui.Gui;
 import org.lwjgl.input.Keyboard;
@@ -40,7 +40,7 @@ public class BindButton extends Component {
     public void keyTyped(char typedChar, int keyCode) {
         super.keyTyped(typedChar, keyCode);
         if (accepting) {
-            if (keyCode == ModuleManager.getModule(ClickGUI.class).keyCode) {
+            if (keyCode == ModuleManager.getModule(ClickGui.class).keyCode) {
                 module.keyCode = Keyboard.KEY_NONE;
             } else {
                 module.keyCode = keyCode;

@@ -4,16 +4,14 @@ import club.eridani.cursa.Cursa;
 import club.eridani.cursa.client.FontManager;
 import club.eridani.cursa.client.GUIManager;
 import club.eridani.cursa.common.annotations.Module;
-import club.eridani.cursa.common.annotations.Parallel;
 import club.eridani.cursa.event.events.render.RenderOverlayEvent;
 import club.eridani.cursa.module.Category;
 import club.eridani.cursa.module.ModuleBase;
 import club.eridani.cursa.setting.Setting;
 import club.eridani.cursa.utils.ChatUtil;
 
-import java.awt.*;
+import java.awt.Color;
 
-@Parallel
 @Module(name = "WaterMark", category = Category.CLIENT)
 public class WaterMark extends ModuleBase {
 

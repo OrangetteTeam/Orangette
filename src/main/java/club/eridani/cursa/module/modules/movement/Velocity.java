@@ -1,7 +1,6 @@
 package club.eridani.cursa.module.modules.movement;
 
 import club.eridani.cursa.common.annotations.Module;
-import club.eridani.cursa.common.annotations.Parallel;
 import club.eridani.cursa.event.events.network.PacketEvent;
 import club.eridani.cursa.mixin.mixins.accessor.AccessorSPacketEntityVelocity;
 import club.eridani.cursa.mixin.mixins.accessor.AccessorSPacketExplosion;
@@ -17,7 +16,6 @@ import net.minecraft.network.play.server.SPacketExplosion;
 
 import javax.annotation.Nullable;
 
-@Parallel
 @Module(name = "Velocity", category = Category.MOVEMENT)
 public class Velocity extends ModuleBase {
 

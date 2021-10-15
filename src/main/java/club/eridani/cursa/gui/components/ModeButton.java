@@ -8,7 +8,7 @@ import club.eridani.cursa.utils.ColorUtil;
 import club.eridani.cursa.utils.SoundUtil;
 import net.minecraft.client.gui.Gui;
 
-import java.awt.*;
+import java.awt.Color;
 
 public class ModeButton extends Component {
 

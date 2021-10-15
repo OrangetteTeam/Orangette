@@ -1,7 +1,6 @@
 package club.eridani.cursa.module.modules.player;
 
 import club.eridani.cursa.common.annotations.Module;
-import club.eridani.cursa.common.annotations.Parallel;
 import club.eridani.cursa.event.events.network.PacketEvent;
 import club.eridani.cursa.module.Category;
 import club.eridani.cursa.module.ModuleBase;
@@ -12,7 +11,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock;
 import net.minecraft.util.math.BlockPos;
 
-@Parallel
 @Module(name = "StorageLock", category = Category.PLAYER)
 public class AntiContainer extends ModuleBase {
 

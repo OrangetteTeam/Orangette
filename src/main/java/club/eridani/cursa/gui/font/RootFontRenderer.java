@@ -3,7 +3,7 @@ package club.eridani.cursa.gui.font;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.opengl.GL11;
 
-import java.awt.*;
+import java.awt.Color;
 
 /**
  * Created by 086 on 26/06/2017.

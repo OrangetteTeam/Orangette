@@ -9,23 +9,23 @@ public class Syncer {
 
     private final CountDownLatch latch;
 
-    public Syncer(int size){
+    public Syncer(int size) {
         latch = new CountDownLatch(size);
     }
 
-    public Syncer(){
+    public Syncer() {
         latch = new CountDownLatch(1);
     }
 
-    public CountDownLatch getLatch(){
+    public CountDownLatch getLatch() {
         return latch;
     }
 
-    public void countDown(){
+    public void countDown() {
         latch.countDown();
     }
 
-    public void await(){
+    public void await() {
         try {
             latch.await();
         } catch (InterruptedException e) {

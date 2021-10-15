@@ -12,7 +12,6 @@ import club.eridani.cursa.notification.NotificationManager;
 import club.eridani.cursa.setting.Setting;
 import club.eridani.cursa.setting.settings.*;
 import net.minecraft.client.Minecraft;
-import net.minecraftforge.common.MinecraftForge;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -166,7 +165,7 @@ public class ModuleBase extends ListenableImpl {
         throw new IllegalStateException("No Annotation on class " + this.getClass().getCanonicalName() + "!");
     }
 
-    public boolean nullCheck(){
+    public boolean nullCheck() {
         return Objects.isNull(mc.player) || Objects.isNull(mc.world);
     }
 

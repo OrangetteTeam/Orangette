@@ -42,7 +42,7 @@ public class VapeLiteClickGUI extends GuiScreen {
 
     private CFontRenderer font;
 
-    public VapeLiteClickGUI(){
+    public VapeLiteClickGUI() {
         font = FontManager.fontRenderer;
     }
 
@@ -82,7 +82,7 @@ public class VapeLiteClickGUI extends GuiScreen {
 
     Timer valuetimer = new Timer();
 
-    public float smoothTrans(double current, double last){
+    public float smoothTrans(double current, double last) {
         return (float) (current + (last - current) / (Minecraft.debugFPS / 10));
     }
 
@@ -119,12 +119,12 @@ public class VapeLiteClickGUI extends GuiScreen {
         }
 
 
-        if(percent <= 1.5 && close) {
+        if (percent <= 1.5 && close) {
             percent = smoothTrans(this.percent, 2);
             percent2 = smoothTrans(this.percent2, 2);
         }
 
-        if(percent >= 1.4  &&  close){
+        if (percent >= 1.4 && close) {
             percent = 1.5f;
             closed = true;
             mc.currentScreen = null;
@@ -254,7 +254,7 @@ public class VapeLiteClickGUI extends GuiScreen {
 
                 float valuey = windowY + 100 + valueRoleNow;
 
-                if(selectMod == null) {
+                if (selectMod == null) {
                     return;
                 }
 
@@ -331,7 +331,7 @@ public class VapeLiteClickGUI extends GuiScreen {
                             font.drawString(">", windowX + width - 15, valuey + 9, new Color(73, 72, 76).getRGB());
                             if (isHovered(windowX + 445 + valuemodx, valuey + 2, windowX + width - 5, valuey + 22, mouseX, mouseY) && Mouse.isButtonDown(0) && valuetimer.delay(300)) {
 
-                                    v.setValue(modeValue.getModes().get(0));
+                                v.setValue(modeValue.getModes().get(0));
                                 valuetimer.reset();
                             }
                         }
@@ -508,7 +508,7 @@ public class VapeLiteClickGUI extends GuiScreen {
                     }
 
                     modCategory = m;
-                    for (ModuleBase mod : ModuleManager.getInstance().moduleList){
+                    for (ModuleBase mod : ModuleManager.getInstance().moduleList) {
                         mod.optionAnim = 0;
                         mod.optionAnimNow = 0;
                     }
@@ -524,14 +524,14 @@ public class VapeLiteClickGUI extends GuiScreen {
 
     @Override
     protected void keyTyped(char typedChar, int keyCode) {
-        if(!closed && keyCode == Keyboard.KEY_ESCAPE){
+        if (!closed && keyCode == Keyboard.KEY_ESCAPE) {
             close = true;
             mc.mouseHelper.grabMouseCursor();
             mc.inGameHasFocus = true;
             return;
         }
 
-        if(close) {
+        if (close) {
             this.mc.displayGuiScreen((GuiScreen) null);
         }
 
@@ -547,7 +547,7 @@ public class VapeLiteClickGUI extends GuiScreen {
     }
 
     @Override
-    public void onGuiClosed(){
+    public void onGuiClosed() {
 
     }
 }

@@ -1,7 +1,6 @@
 package club.eridani.cursa.client;
 
 import club.eridani.cursa.Cursa;
-import club.eridani.cursa.concurrent.task.VoidTask;
 import club.eridani.cursa.gui.GUIRenderer;
 import club.eridani.cursa.gui.Panel;
 import club.eridani.cursa.module.ModuleBase;

@@ -1,7 +1,6 @@
 package club.eridani.cursa.client;
 
 import club.eridani.cursa.Cursa;
-import club.eridani.cursa.common.annotations.Module;
 import club.eridani.cursa.common.annotations.Parallel;
 import club.eridani.cursa.concurrent.event.Listener;
 import club.eridani.cursa.concurrent.event.Priority;
@@ -64,8 +63,8 @@ public class ModuleManager {
 
     public List<ModuleBase> getModulesByCategory(Category category) {
         List<ModuleBase> modules = new ArrayList<>();
-        for(ModuleBase m : this.moduleList){
-            if(m.category == category) modules.add(m);
+        for (ModuleBase m : this.moduleList) {
+            if (m.category == category) modules.add(m);
         }
         return modules;
     }

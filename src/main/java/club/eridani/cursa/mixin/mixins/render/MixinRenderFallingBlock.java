@@ -10,8 +10,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(RenderFallingBlock.class)
 public class MixinRenderFallingBlock {
-    @Inject(method = "doRender" , at = @At(value = "HEAD") , cancellable = true)
-    private void doRender(EntityFallingBlock entity, double x, double y, double z, float entityYaw, float partialTicks , CallbackInfo info) {
-        if(NoRender.INSTANCE.isEnabled() && NoRender.INSTANCE.fallingBlock.getValue()) info.cancel();
+    @Inject(method = "doRender", at = @At(value = "HEAD"), cancellable = true)
+    private void doRender(EntityFallingBlock entity, double x, double y, double z, float entityYaw, float partialTicks, CallbackInfo info) {
+        if (NoRender.INSTANCE.isEnabled() && NoRender.INSTANCE.fallingBlock.getValue()) info.cancel();
     }
 }

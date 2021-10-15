@@ -15,8 +15,7 @@ public class FileUtil {
         try {
             Path path = Paths.get(file);
             return Files.readAllLines(path, StandardCharsets.UTF_8);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("WARNING: Unable to read file, creating new file: " + file);
             FileUtil.appendTextFile("", file);
             return Collections.emptyList();
@@ -27,8 +26,7 @@ public class FileUtil {
         try {
             Path path = Paths.get(file);
             Files.write(path, Collections.singletonList(data), StandardCharsets.UTF_8, Files.exists(path) ? StandardOpenOption.APPEND : StandardOpenOption.CREATE);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("WARNING: Unable to write file: " + file);
             return false;
         }

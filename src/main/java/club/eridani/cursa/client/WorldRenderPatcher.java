@@ -2,7 +2,6 @@ package club.eridani.cursa.client;
 
 import club.eridani.cursa.Cursa;
 import club.eridani.cursa.event.events.render.RenderEvent;
-import club.eridani.cursa.event.events.render.RenderOverlayEvent;
 import club.eridani.cursa.event.events.render.RenderWorldEvent;
 import club.eridani.cursa.notification.NotificationManager;
 import club.eridani.cursa.utils.CursaTessellator;

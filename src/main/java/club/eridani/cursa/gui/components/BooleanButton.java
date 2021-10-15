@@ -25,7 +25,7 @@ public class BooleanButton extends Component {
         Gui.drawRect(x, y, x + width, y + height, 0x85000000);
 
         int c = (setting.getValue() ? color : fontColor);
-        if (isHovered(mouseX, mouseY)){
+        if (isHovered(mouseX, mouseY)) {
             c = (c & 0x7F7F7F) << 1;
         }
 
@@ -45,7 +45,7 @@ public class BooleanButton extends Component {
     }
 
     @Override
-    public boolean isVisible(){
+    public boolean isVisible() {
         return setting.isVisible();
     }
 

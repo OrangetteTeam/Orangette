@@ -66,9 +66,9 @@ public class Scaffold extends ModuleBase {
             mc.gameSettings.keyBindSneak.pressed = false;
             mc.player.setSneaking(false);
         }
-        float reach = mc.playerController.getBlockReachDistance()+ MathHelper.SQRT_2;
+        float reach = mc.playerController.getBlockReachDistance() + MathHelper.SQRT_2;
         BlockPos player = new BlockPos(mc.player);
-        BlockPos target = new BlockPos(mc.player.getPositionVector()).down(dow?2:1);
+        BlockPos target = new BlockPos(mc.player.getPositionVector()).down(dow ? 2 : 1);
         double d = reach;
         EnumFacing faa = null;
         if (mc.world.isAirBlock(target)) {
@@ -109,10 +109,8 @@ public class Scaffold extends ModuleBase {
         mc.player.setRotationYawHead(yaw);
     }
 
-    public EnumFacing reverse(EnumFacing facing)
-    {
-        switch (facing)
-        {
+    public EnumFacing reverse(EnumFacing facing) {
+        switch (facing) {
             case DOWN:
                 return UP;
 

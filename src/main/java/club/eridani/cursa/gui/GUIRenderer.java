@@ -1,9 +1,9 @@
 package club.eridani.cursa.gui;
 
-import club.eridani.cursa.gui.components.ModuleButton;
 import club.eridani.cursa.client.ModuleManager;
+import club.eridani.cursa.gui.components.ModuleButton;
 import club.eridani.cursa.module.Category;
-import club.eridani.cursa.module.modules.client.ClickGUI;
+import club.eridani.cursa.module.modules.client.ClickGui;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
@@ -60,7 +60,7 @@ public class GUIRenderer {
 
     public void keyTyped(char typedChar, int keyCode) {
         if (keyCode == Keyboard.KEY_ESCAPE) {
-            ModuleManager.getModule(ClickGUI.class).disable();
+            ModuleManager.getModule(ClickGui.class).disable();
         }
         for (Panel panel : panels) {
             panel.keyTyped(typedChar, keyCode);

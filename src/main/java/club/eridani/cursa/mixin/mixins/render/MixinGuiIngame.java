@@ -10,8 +10,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GuiIngame.class)
 public class MixinGuiIngame {
-    @Inject(method = "renderPortal" , at = @At(value = "HEAD") , cancellable = true)
-    public void renderPortal(float timeInPortal, ScaledResolution scaledRes , CallbackInfo info){
-        if(NoRender.INSTANCE.isEnabled() && NoRender.INSTANCE.portal.getValue()) info.cancel();
+    @Inject(method = "renderPortal", at = @At(value = "HEAD"), cancellable = true)
+    public void renderPortal(float timeInPortal, ScaledResolution scaledRes, CallbackInfo info) {
+        if (NoRender.INSTANCE.isEnabled() && NoRender.INSTANCE.portal.getValue()) info.cancel();
     }
 }

@@ -15,12 +15,12 @@ public class RotationUtil {
         double difY = (to.y - from.y) * -1.0;
         double difZ = to.z - from.z;
         double dist = MathHelper.sqrt((difX * difX + difZ * difZ));
-        return new float[]{(float)MathHelper.wrapDegrees((Math.toDegrees(Math.atan2(difZ, difX)) - 90.0)), (float)MathHelper.wrapDegrees(Math.toDegrees(Math.atan2(difY, dist)))};
+        return new float[]{(float) MathHelper.wrapDegrees((Math.toDegrees(Math.atan2(difZ, difX)) - 90.0)), (float) MathHelper.wrapDegrees(Math.toDegrees(Math.atan2(difY, dist)))};
     }
 
     public static float[] getRotationsBlock(BlockPos block, EnumFacing face, boolean Legit) {
-        double x = block.getX() + 0.5 - mc.player.posX +  (double) face.getXOffset()/2;
-        double z = block.getZ() + 0.5 - mc.player.posZ +  (double) face.getZOffset()/2;
+        double x = block.getX() + 0.5 - mc.player.posX + (double) face.getXOffset() / 2;
+        double z = block.getZ() + 0.5 - mc.player.posZ + (double) face.getZOffset() / 2;
         double y = (block.getY() + 0.5);
 
         if (Legit)

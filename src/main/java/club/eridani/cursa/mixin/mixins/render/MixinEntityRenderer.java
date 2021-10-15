@@ -38,9 +38,9 @@ public class MixinEntityRenderer {
         Cursa.EVENT_BUS.post(event);
     }
 
-    @Inject(method = "setupFog(IF)V" , at = @At(value = "HEAD") , cancellable = true)
-    public void setupFog(int startCoords, float partialTicks , CallbackInfo info){
-        if(NoRender.INSTANCE.isEnabled() && NoRender.INSTANCE.fog.getValue()) info.cancel();
+    @Inject(method = "setupFog(IF)V", at = @At(value = "HEAD"), cancellable = true)
+    public void setupFog(int startCoords, float partialTicks, CallbackInfo info) {
+        if (NoRender.INSTANCE.isEnabled() && NoRender.INSTANCE.fog.getValue()) info.cancel();
     }
 
 }

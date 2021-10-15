@@ -1,7 +1,6 @@
 package club.eridani.cursa.utils;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -9,7 +8,7 @@ import java.util.List;
  */
 public class ListUtil {
     @SafeVarargs
-    public static <T> List<T> listOf(T... elements){
+    public static <T> List<T> listOf(T... elements) {
         return Arrays.asList(elements);
     }
 }

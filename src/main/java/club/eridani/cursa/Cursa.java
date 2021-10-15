@@ -5,9 +5,8 @@ import club.eridani.cursa.concurrent.event.EventManager;
 import club.eridani.cursa.concurrent.event.Listener;
 import club.eridani.cursa.concurrent.event.Priority;
 import club.eridani.cursa.event.events.client.InitializationEvent;
-import club.eridani.cursa.module.modules.client.ClickGUI;
+import club.eridani.cursa.module.modules.client.ClickGui;
 import club.eridani.cursa.tasks.Tasks;
-import net.minecraftforge.fml.common.Mod;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
@@ -63,7 +62,7 @@ public class Cursa {
     @Listener(priority = Priority.HIGHEST)
     public void postInitialize(InitializationEvent.PostInitialize event) {
         launch(Tasks.LoadConfig);
-        ClickGUI.instance.disable();
+        ClickGui.instance.disable();
     }
 
     public static boolean isMainThread(Thread thread) {

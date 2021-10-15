@@ -5,15 +5,15 @@ import club.eridani.cursa.common.annotations.Module;
 import club.eridani.cursa.module.Category;
 import club.eridani.cursa.module.ModuleBase;
 
-@Module(name = "DiscordRPC" , category = Category.MISC)
-public class DiscordRPC extends ModuleBase {
+@Module(name = "DiscordRPC", category = Category.MISC)
+public class DiscordRpc extends ModuleBase {
     @Override
-    public void onEnable(){
+    public void onEnable() {
         RPCManager.INSTANCE.enable();
     }
 
     @Override
-    public void onDisable(){
+    public void onDisable() {
         RPCManager.INSTANCE.disable();
     }
 }

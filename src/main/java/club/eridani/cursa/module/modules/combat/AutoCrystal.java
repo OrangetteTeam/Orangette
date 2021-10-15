@@ -30,7 +30,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -57,9 +57,9 @@ public class AutoCrystal extends ModuleBase {
     Setting<Boolean> facePlace = setting("FacePlace", false);
     Setting<Double> blastHealth = setting("BlastHealth", 2.0, 0.0, 8).whenTrue(facePlace);
     Setting<Boolean> spoofRotations = setting("SpoofRotation", true);
-    Setting<Boolean> predictHit = setting("PreditHit" , false);
-    Setting<Integer> offset = setting("Offset" , 0  , 0 , 15);
-    Setting<Integer> amount = setting("Amount" , 0 , 0 , 15);
+    Setting<Boolean> predictHit = setting("PreditHit", false);
+    Setting<Integer> offset = setting("Offset", 0, 0, 15);
+    Setting<Integer> amount = setting("Amount", 0, 0, 15);
     Setting<Boolean> renderPlace = setting("RenderBlock", true);
 
     Timer placeTimer = new Timer();
@@ -182,15 +182,15 @@ public class AutoCrystal extends ModuleBase {
             }
         }
 
-        if(event.getPacket() instanceof SPacketSpawnObject)
+        if (event.getPacket() instanceof SPacketSpawnObject)
             lastEntityID = ((SPacketSpawnObject) event.getPacket()).getEntityID();
-        if(event.getPacket() instanceof SPacketSpawnExperienceOrb)
+        if (event.getPacket() instanceof SPacketSpawnExperienceOrb)
             lastEntityID = ((SPacketSpawnExperienceOrb) event.getPacket()).getEntityID();
-        if(event.getPacket() instanceof SPacketSpawnMob)
-            lastEntityID = ((SPacketSpawnMob)event.getPacket()).getEntityID();
-        if(event.getPacket() instanceof SPacketSpawnPainting)
-            lastEntityID = ((SPacketSpawnPainting)event.getPacket()).getEntityID();
-        if(event.getPacket() instanceof SPacketSpawnPlayer)
+        if (event.getPacket() instanceof SPacketSpawnMob)
+            lastEntityID = ((SPacketSpawnMob) event.getPacket()).getEntityID();
+        if (event.getPacket() instanceof SPacketSpawnPainting)
+            lastEntityID = ((SPacketSpawnPainting) event.getPacket()).getEntityID();
+        if (event.getPacket() instanceof SPacketSpawnPlayer)
             lastEntityID = ((SPacketSpawnPlayer) event.getPacket()).getEntityID();
     }
 
@@ -325,8 +325,8 @@ public class AutoCrystal extends ModuleBase {
         }
         placements++;
 
-        if(!predictHit.getValue() || lastEntityID == -1) return;
-        for(int i = offset.getValue(); i < amount.getValue(); i++){
+        if (!predictHit.getValue() || lastEntityID == -1) return;
+        for (int i = offset.getValue(); i < amount.getValue(); i++) {
             CPacketUseEntity cpacket = new CPacketUseEntity();
             cpacket.entityId = lastEntityID + i + 1;
             cpacket.action = CPacketUseEntity.Action.ATTACK;

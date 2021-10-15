@@ -6,7 +6,7 @@ public class RenderModelEvent extends CursaEvent {
     public boolean rotating = false;
     public float pitch = 0;
 
-    public RenderModelEvent(){
+    public RenderModelEvent() {
         super();
     }
 }

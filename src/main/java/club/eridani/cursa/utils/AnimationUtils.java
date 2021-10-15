@@ -5,7 +5,7 @@ public class AnimationUtils {
     private static final float defaultAnimationSpeed = 0.6f;
 
     public static float animate(final float target, float current) {
-        if(Math.abs(current-target) < defaultAnimationSpeed) {
+        if (Math.abs(current - target) < defaultAnimationSpeed) {
             return current;
         }
         float dif = Math.max(target, current) - Math.min(target, current);
