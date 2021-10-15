@@ -3,8 +3,8 @@ package club.eridani.cursa.module.modules.client;
 import club.eridani.cursa.client.ConfigManager;
 import club.eridani.cursa.common.annotations.Module;
 import club.eridani.cursa.gui.CursaClickGUI;
-import club.eridani.cursa.gui.sigma.SigmaGUI;
-import club.eridani.cursa.gui.vapelite.VapeLiteClickGUI;
+import club.eridani.cursa.gui.sigma.SigmaGui;
+import club.eridani.cursa.gui.vapelite.VapeLiteGui;
 import club.eridani.cursa.module.Category;
 import club.eridani.cursa.module.ModuleBase;
 import club.eridani.cursa.setting.Setting;
@@ -26,10 +26,10 @@ public class ClickGui extends ModuleBase {
 
         if (gui.getValue().equals("Cursa") && !(mc.currentScreen instanceof CursaClickGUI))
             mc.displayGuiScreen(new CursaClickGUI());
-        if (gui.getValue().equals("Vape") && !(mc.currentScreen instanceof VapeLiteClickGUI))
-            mc.displayGuiScreen(new VapeLiteClickGUI());
-        if (gui.getValue().equals("Sigma") && !(mc.currentScreen instanceof SigmaGUI))
-            mc.displayGuiScreen(new SigmaGUI());
+        if (gui.getValue().equals("Vape") && !(mc.currentScreen instanceof VapeLiteGui))
+            mc.displayGuiScreen(new VapeLiteGui());
+        if (gui.getValue().equals("Sigma") && !(mc.currentScreen instanceof SigmaGui))
+            mc.displayGuiScreen(new SigmaGui());
     }
 
     @Override
