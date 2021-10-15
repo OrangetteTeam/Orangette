@@ -6,6 +6,7 @@ import club.eridani.cursa.client.ModuleManager;
 import club.eridani.cursa.gui.font.CFontRenderer;
 import club.eridani.cursa.module.Category;
 import club.eridani.cursa.module.ModuleBase;
+import club.eridani.cursa.module.modules.client.ClickGui;
 import club.eridani.cursa.setting.Setting;
 import club.eridani.cursa.setting.settings.BooleanSetting;
 import club.eridani.cursa.setting.settings.DoubleSetting;
@@ -23,7 +24,7 @@ import org.lwjgl.opengl.GL11;
 import java.awt.Color;
 import java.io.IOException;
 
-public class VapeLiteClickGUI extends GuiScreen {
+public class VapeLiteGui extends GuiScreen {
     private boolean close = false;
     private boolean closed;
 
@@ -42,7 +43,7 @@ public class VapeLiteClickGUI extends GuiScreen {
 
     private CFontRenderer font;
 
-    public VapeLiteClickGUI() {
+    public VapeLiteGui() {
         font = FontManager.fontRenderer;
     }
 
@@ -548,6 +549,8 @@ public class VapeLiteClickGUI extends GuiScreen {
 
     @Override
     public void onGuiClosed() {
-
+        if (ModuleManager.getModule(ClickGui.class).isEnabled()) {
+            ModuleManager.getModule(ClickGui.class).disable();
+        }
     }
 }

@@ -1,12 +1,14 @@
 package club.eridani.cursa.gui.sigma;
 
 import club.eridani.cursa.client.FontManager;
+import club.eridani.cursa.client.ModuleManager;
 import club.eridani.cursa.gui.sigma.component.BindButton;
 import club.eridani.cursa.gui.sigma.component.BooleanButton;
 import club.eridani.cursa.gui.sigma.component.ModeButton;
 import club.eridani.cursa.gui.sigma.component.NumberSlider;
 import club.eridani.cursa.module.Category;
 import club.eridani.cursa.module.ModuleBase;
+import club.eridani.cursa.module.modules.client.ClickGui;
 import club.eridani.cursa.utils.ColorUtil;
 import club.eridani.cursa.utils.RenderUtil;
 import net.minecraft.client.Minecraft;
@@ -23,8 +25,8 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 
-public class SigmaGUI extends GuiScreen {
-    public static SigmaGUI INSTANCE;
+public class SigmaGui extends GuiScreen {
+    public static SigmaGui INSTANCE;
     private static List<Panel> panels = new ArrayList<>();
     private List<Component> components = new ArrayList<>();
     private ModuleBase settingModule;
@@ -60,6 +62,9 @@ public class SigmaGUI extends GuiScreen {
     public void onGuiClosed() {
         if (Minecraft.getMinecraft().entityRenderer.getShaderGroup() != null)
             Minecraft.getMinecraft().entityRenderer.getShaderGroup().deleteShaderGroup();
+        if (ModuleManager.getModule(ClickGui.class).isEnabled()) {
+            ModuleManager.getModule(ClickGui.class).disable();
+        }
     }
 
     @Override
