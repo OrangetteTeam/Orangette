@@ -12,10 +12,6 @@ public class ReverseStep extends ModuleBase {
 
     public void onUpdate() {
         if (nullCheck()) return;
-        try {
-        } catch (Exception ignored) {
-            return;
-        }
 
         if (mc.player.onGround) {
             for (double y = 0.0; y < this.Height.getValue() + 0.5; y += 0.01) {
