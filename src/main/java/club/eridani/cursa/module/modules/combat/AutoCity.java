@@ -25,7 +25,7 @@ import java.util.Objects;
 
 import static org.lwjgl.opengl.GL11.GL_QUADS;
 
-@Module(name = "AutoCity", category = Category.COMBAT)
+@Module(name = "HoleMiner", category = Category.COMBAT)
 public class AutoCity extends ModuleBase {
     public Setting<Double> range = setting("Range", 6.0, 1.0, 15.0);
     public Setting<Boolean> swing = setting("Swing", false);
