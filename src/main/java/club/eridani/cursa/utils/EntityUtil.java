@@ -4,7 +4,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.passive.EntityAmbientCreature;
 import net.minecraft.entity.passive.EntitySquid;
@@ -56,7 +55,7 @@ public class EntityUtil {
     }
 
     public static BlockPos getLocalPlayerPosFloored() {
-        return new BlockPos(Math.floor(mc.player.posX), Math.floor(mc.player.posY), Math.floor(mc.player.posZ));
+        return new BlockPos(mc.player.getPositionVector());
     }
 
     public static boolean isFakeLocalPlayer(Entity entity) {
@@ -71,10 +70,6 @@ public class EntityUtil {
             return true;
         }
         return e instanceof EntityIronGolem && ((EntityIronGolem) e).getRevengeTarget() == null;
-    }
-
-    public static boolean isLiving(Entity e) {
-        return e instanceof EntityLivingBase;
     }
 
     public static float[] calculateLookAt(Vec3d pos, EntityPlayer me) {
@@ -97,13 +92,13 @@ public class EntityUtil {
         return new float[]{(float) yaw, (float) pitch};
     }
 
-    public static EntityPlayer getNearestPlayer(){
+    public static EntityPlayer getNearestPlayer() {
         return mc.world.playerEntities
                 .stream().filter(e -> e.entityId != mc.player.entityId)
                 .min(Comparator.comparing(PlayerUtil::getDistance)).orElse(null);
     }
 
-    public static BlockPos getEntityPos(Entity e){
-        return new BlockPos(e.posX , e.posY , e.posZ);
+    public static BlockPos getEntityPos(Entity e) {
+        return new BlockPos(e.posX, e.posY, e.posZ);
     }
 }
