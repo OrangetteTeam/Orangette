@@ -2,7 +2,6 @@ package club.eridani.cursa.module.modules.client;
 
 import club.eridani.cursa.client.ConfigManager;
 import club.eridani.cursa.common.annotations.Module;
-import club.eridani.cursa.common.annotations.Parallel;
 import club.eridani.cursa.gui.CursaClickGUI;
 import club.eridani.cursa.gui.sigma.SigmaGUI;
 import club.eridani.cursa.gui.vapelite.VapeLiteClickGUI;
@@ -11,14 +10,13 @@ import club.eridani.cursa.module.ModuleBase;
 import club.eridani.cursa.setting.Setting;
 import org.lwjgl.input.Keyboard;
 
-@Parallel
 @Module(name = "ClickGUI", category = Category.CLIENT, keyCode = Keyboard.KEY_O)
-public class ClickGUI extends ModuleBase {
-    public Setting<String> gui = setting("Type" , "Sigma" , "Cursa" , "Vape" , "Sigma");
+public class ClickGui extends ModuleBase {
+    public Setting<String> gui = setting("Type", "Sigma", "Cursa", "Vape", "Sigma");
 
-    public static ClickGUI instance;
+    public static ClickGui instance;
 
-    public ClickGUI() {
+    public ClickGui() {
         instance = this;
     }
 

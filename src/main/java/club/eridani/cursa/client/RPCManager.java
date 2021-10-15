@@ -1,7 +1,6 @@
 package club.eridani.cursa.client;
 
 import club.eridani.cursa.Cursa;
-import club.eridani.cursa.common.annotations.Module;
 import club.minnced.discord.rpc.DiscordEventHandlers;
 import club.minnced.discord.rpc.DiscordRPC;
 import club.minnced.discord.rpc.DiscordRichPresence;
@@ -14,12 +13,11 @@ public class RPCManager {
     public static RPCManager INSTANCE;
     private Thread _thread = null;
 
-    public static void init(){
+    public static void init() {
         INSTANCE = new RPCManager();
     }
 
-    public void enable()
-    {
+    public void enable() {
         DiscordRPC lib = DiscordRPC.INSTANCE;
         String applicationId = "855296693708652564";
         String steamId = "";
@@ -31,8 +29,7 @@ public class RPCManager {
         presence.largeImageText = "";
         _thread = new Thread(() ->
         {
-            while (!Thread.currentThread().isInterrupted())
-            {
+            while (!Thread.currentThread().isInterrupted()) {
                 lib.Discord_RunCallbacks();
                 presence.details = getDetails();
                 presence.state = getState();
@@ -42,8 +39,7 @@ public class RPCManager {
 
                 try {
                     Thread.sleep(3000);
-                }
-                catch (InterruptedException ignored) {
+                } catch (InterruptedException ignored) {
                 }
             }
         }, "RPC-Callback-Handler");
@@ -51,17 +47,16 @@ public class RPCManager {
         _thread.start();
     }
 
-    public void disable()
-    {
+    public void disable() {
         DiscordRPC.INSTANCE.Discord_Shutdown();
         _thread = null;
     }
 
-    public String getDetails(){
+    public String getDetails() {
         return Objects.isNull(mc.player) ? "MainMenu" : mc.player.getName();
     }
 
-    public String getState(){
-        return Objects.isNull(mc.player) ? "" :  Objects.isNull(mc.getCurrentServerData()) ? "SinglePlayer" : mc.getCurrentServerData().serverIP;
+    public String getState() {
+        return Objects.isNull(mc.player) ? "" : Objects.isNull(mc.getCurrentServerData()) ? "SinglePlayer" : mc.getCurrentServerData().serverIP;
     }
 }

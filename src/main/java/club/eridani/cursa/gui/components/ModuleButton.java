@@ -12,7 +12,7 @@ import club.eridani.cursa.utils.SoundUtil;
 import club.eridani.cursa.utils.Timer;
 import net.minecraft.client.gui.Gui;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 

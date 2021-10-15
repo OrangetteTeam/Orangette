@@ -8,7 +8,7 @@ import static java.lang.Thread.sleep;
  */
 public class ThreadUtil {
 
-    public static void delay(){
+    public static void delay() {
         try {
             sleep(1);
         } catch (InterruptedException e) {

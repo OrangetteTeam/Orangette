@@ -1,13 +1,11 @@
 package club.eridani.cursa.module.modules.misc;
 
 import club.eridani.cursa.common.annotations.Module;
-import club.eridani.cursa.common.annotations.Parallel;
 import club.eridani.cursa.event.events.network.PacketEvent;
 import club.eridani.cursa.module.Category;
 import club.eridani.cursa.module.ModuleBase;
 import net.minecraft.network.play.client.CPacketCloseWindow;
 
-@Parallel
 @Module(name = "XCarry", category = Category.MISC)
 public class XCarry extends ModuleBase {
 

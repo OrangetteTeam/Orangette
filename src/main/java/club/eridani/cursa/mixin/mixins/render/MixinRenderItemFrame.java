@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(RenderItemFrame.class)
 public class MixinRenderItemFrame {
     @Inject(method = "doRender", at = @At(value = "HEAD"), cancellable = true)
-    public void doRender(EntityItemFrame entity, double x, double y, double z, float entityYaw, float partialTicks , CallbackInfo info){
-        if(NoRender.INSTANCE.isEnabled() && NoRender.INSTANCE.frame.getValue()) info.cancel();
+    public void doRender(EntityItemFrame entity, double x, double y, double z, float entityYaw, float partialTicks, CallbackInfo info) {
+        if (NoRender.INSTANCE.isEnabled() && NoRender.INSTANCE.frame.getValue()) info.cancel();
     }
 }

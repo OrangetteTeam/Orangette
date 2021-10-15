@@ -1,14 +1,12 @@
 package club.eridani.cursa.module.modules.combat;
 
 import club.eridani.cursa.common.annotations.Module;
-import club.eridani.cursa.common.annotations.Parallel;
 import club.eridani.cursa.event.events.network.PacketEvent;
 import club.eridani.cursa.module.Category;
 import club.eridani.cursa.module.ModuleBase;
 import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.network.play.client.CPacketUseEntity;
 
-@Parallel
 @Module(name = "Criticals", category = Category.COMBAT)
 public class Criticals extends ModuleBase {
 

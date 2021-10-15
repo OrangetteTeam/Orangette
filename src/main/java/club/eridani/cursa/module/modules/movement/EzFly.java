@@ -1,12 +1,9 @@
 package club.eridani.cursa.module.modules.movement;
 
 import club.eridani.cursa.common.annotations.Module;
-import club.eridani.cursa.common.annotations.Parallel;
 import club.eridani.cursa.module.Category;
 import club.eridani.cursa.module.ModuleBase;
-import club.eridani.cursa.setting.Setting;
 
-@Parallel
 @Module(name = "EzFly", category = Category.MOVEMENT)
 public class EzFly extends ModuleBase {
 

@@ -3,13 +3,14 @@ package club.eridani.cursa.client;
 import club.eridani.cursa.gui.font.CFont;
 import club.eridani.cursa.gui.font.CFontRenderer;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 
 public class FontManager {
 
     public static CFontRenderer iconFont;
     public static CFontRenderer fontRenderer;
-    public static CFontRenderer jelloFont , jelloLargeFont;
+    public static CFontRenderer jelloFont, jelloLargeFont;
 
     public static void init() {
         iconFont = new CFontRenderer(new CFont.CustomFont("/assets/minecraft/fonts/Icon.ttf", 22f, Font.PLAIN), true, false);
@@ -18,11 +19,11 @@ public class FontManager {
         jelloLargeFont = new CFontRenderer(new CFont.CustomFont("/assets/minecraft/fonts/JelloLight.ttf", 23f, Font.PLAIN), true, false);
     }
 
-    public static int getWidth(String str){
+    public static int getWidth(String str) {
         return fontRenderer.getStringWidth(str);
     }
 
-    public static int getHeight(){
+    public static int getHeight() {
         return fontRenderer.getHeight() + 2;
     }
 
@@ -34,11 +35,11 @@ public class FontManager {
         fontRenderer.drawString(str, x, y, color.getRGB());
     }
 
-    public static int getIconWidth(){
+    public static int getIconWidth() {
         return iconFont.getStringWidth("q");
     }
 
-    public static int getIconHeight(){
+    public static int getIconHeight() {
         return iconFont.getHeight();
     }
 

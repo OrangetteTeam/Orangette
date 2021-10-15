@@ -4,19 +4,17 @@ import club.eridani.cursa.Cursa;
 import club.eridani.cursa.client.FontManager;
 import club.eridani.cursa.client.GUIManager;
 import club.eridani.cursa.common.annotations.Module;
-import club.eridani.cursa.common.annotations.Parallel;
 import club.eridani.cursa.event.events.render.RenderOverlayEvent;
 import club.eridani.cursa.module.Category;
 import club.eridani.cursa.module.ModuleBase;
 import club.eridani.cursa.setting.Setting;
 import club.eridani.cursa.utils.RenderHelper;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Parallel
 @Module(name = "ActiveModuleList", category = Category.CLIENT)
 public class ActiveModuleList extends ModuleBase {
 
@@ -25,8 +23,8 @@ public class ActiveModuleList extends ModuleBase {
     @Override
     public void onRender(RenderOverlayEvent event) {
 
-        int startX = RenderHelper.getStart(event.getScaledResolution(),listPos.getValue()).x;
-        int startY = RenderHelper.getStart(event.getScaledResolution(),listPos.getValue()).y;
+        int startX = RenderHelper.getStart(event.getScaledResolution(), listPos.getValue()).x;
+        int startY = RenderHelper.getStart(event.getScaledResolution(), listPos.getValue()).y;
 
         if (mc.player.getActivePotionEffects().size() > 0 && listPos.getValue().equals("RightTop")) {
             startY += 26;

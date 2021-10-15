@@ -76,7 +76,7 @@ public class ParticleSystem {
                     continue;
                 }
                 nearestDistance = distance;
-                nearestParticle  = particle1;
+                nearestParticle = particle1;
             }
 
             if (nearestParticle == null) {

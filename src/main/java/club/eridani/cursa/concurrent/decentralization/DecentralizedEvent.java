@@ -15,7 +15,7 @@ public class DecentralizedEvent<T extends EventData> {
         listeners.add((EventTask<T>) action);
     }
 
-    public void unregister(EventTask<? extends EventData> action)  {
+    public void unregister(EventTask<? extends EventData> action) {
         listeners.removeIf(it -> it.equals(action));
     }
 

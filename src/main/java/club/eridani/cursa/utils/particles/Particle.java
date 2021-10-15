@@ -34,6 +34,7 @@ public class Particle {
     public void setVelocity(Vector2f velocity) {
         this.velocity = velocity;
     }
+
     public float getAlpha() {
         return this.alpha;
     }
@@ -73,7 +74,7 @@ public class Particle {
     public void tick(int delta, float speed) {
         pos.x += velocity.getX() * delta * speed;
         pos.y += velocity.getY() * delta * speed;
-        if(alpha < 255.0f)this.alpha += 0.05f * delta;
+        if (alpha < 255.0f) this.alpha += 0.05f * delta;
 
         if (pos.getX() > Display.getWidth()) pos.setX(0);
         if (pos.getX() < 0) pos.setX(Display.getWidth());
