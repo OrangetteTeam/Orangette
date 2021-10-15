@@ -1,40 +1,40 @@
 package club.eridani.cursa.utils;
 
-import club.eridani.cursa.utils.math.Vec2I;
+import club.eridani.cursa.utils.math.Vec2i;
 import net.minecraft.client.gui.ScaledResolution;
 
 public class RenderHelper {
 
-    public static Vec2I getStart(ScaledResolution scaledResolution, String caseIn) {
+    public static Vec2i getStart(ScaledResolution scaledResolution, String caseIn) {
         switch (caseIn) {
             case "RightDown": {
-                return new Vec2I(scaledResolution.getScaledWidth(), scaledResolution.getScaledHeight());
+                return new Vec2i(scaledResolution.getScaledWidth(), scaledResolution.getScaledHeight());
             }
             case "LeftTop": {
-                return new Vec2I(0, 0);
+                return Vec2i.ZERO;
             }
             case "LeftDown": {
-                return new Vec2I(0, scaledResolution.getScaledHeight());
+                return new Vec2i(0, scaledResolution.getScaledHeight());
             }
             default: {
-                return new Vec2I(scaledResolution.getScaledWidth(), 0);
+                return new Vec2i(scaledResolution.getScaledWidth(), 0);
             }
         }
     }
 
-    public static Vec2I getStart(ScaledResolution scaledResolution, StartPos caseIn) {
+    public static Vec2i getStart(ScaledResolution scaledResolution, StartPos caseIn) {
         switch (caseIn) {
             case RightDown: {
-                return new Vec2I(scaledResolution.getScaledWidth(), scaledResolution.getScaledHeight());
+                return new Vec2i(scaledResolution.getScaledWidth(), scaledResolution.getScaledHeight());
             }
             case LeftTop: {
-                return new Vec2I(0, 0);
+                return Vec2i.ZERO;
             }
             case LeftDown: {
-                return new Vec2I(0, scaledResolution.getScaledHeight());
+                return new Vec2i(0, scaledResolution.getScaledHeight());
             }
             default: {
-                return new Vec2I(scaledResolution.getScaledWidth(), 0);
+                return new Vec2i(scaledResolution.getScaledWidth(), 0);
             }
         }
     }

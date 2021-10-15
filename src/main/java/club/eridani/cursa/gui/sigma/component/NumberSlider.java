@@ -8,7 +8,6 @@ import club.eridani.cursa.setting.settings.FloatSetting;
 import club.eridani.cursa.setting.settings.IntSetting;
 import club.eridani.cursa.utils.ColorUtil;
 import club.eridani.cursa.utils.RenderUtil;
-import club.eridani.cursa.utils.RenderUtils;
 import net.minecraft.util.math.MathHelper;
 
 public class NumberSlider extends Component {
@@ -41,8 +40,8 @@ public class NumberSlider extends Component {
         eclipseX = (float) (sliderX + tempWidth + eclipseScale * 0.5F);
         eclipseY = getCenter(sliderY , sliderHeight , eclipseScale * 0.5F) + 1;
         float shaderScale = eclipseScale + 0.5F;
-        RenderUtils.drawCircle((float) (sliderX + tempWidth + shaderScale * 0.5F) , getCenter(sliderY , sliderHeight , shaderScale * 0.5F) + 1 , shaderScale , ColorUtil.toRGBA(0,0,0 , 40));
-        RenderUtils.drawCircle(eclipseX , eclipseY , eclipseScale , ColorUtil.toRGBA(244,244,243 , 255));
+        RenderUtil.drawCircle((float) (sliderX + tempWidth + shaderScale * 0.5F) , getCenter(sliderY , sliderHeight , shaderScale * 0.5F) + 1 , shaderScale , ColorUtil.toRGBA(0,0,0 , 40));
+        RenderUtil.drawCircle(eclipseX , eclipseY , eclipseScale , ColorUtil.toRGBA(244,244,243 , 255));
         eclipseScale = isMouseHovering(mouseX , mouseY , eclipseX , eclipseY , eclipseScale , eclipseScale , 3) ? 3.5F : 3F;
         if (this.sliding) {
             double diff = setting.getMax().doubleValue() - setting.getMin().doubleValue();

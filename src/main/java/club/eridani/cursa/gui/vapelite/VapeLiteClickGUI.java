@@ -1,38 +1,27 @@
 package club.eridani.cursa.gui.vapelite;
 
-import club.eridani.cursa.setting.settings.ModeSetting;
-import net.minecraft.client.gui.GuiScreen;
-import java.awt.Color;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Locale;
-
 import club.eridani.cursa.Cursa;
 import club.eridani.cursa.client.FontManager;
 import club.eridani.cursa.client.ModuleManager;
-import club.eridani.cursa.common.annotations.Module;
-import club.eridani.cursa.gui.font.CFont;
 import club.eridani.cursa.gui.font.CFontRenderer;
 import club.eridani.cursa.module.Category;
 import club.eridani.cursa.module.ModuleBase;
 import club.eridani.cursa.setting.Setting;
 import club.eridani.cursa.setting.settings.BooleanSetting;
 import club.eridani.cursa.setting.settings.DoubleSetting;
-import club.eridani.cursa.utils.CursaTessellator;
-import club.eridani.cursa.utils.RenderUtils;
+import club.eridani.cursa.setting.settings.ModeSetting;
+import club.eridani.cursa.utils.RenderUtil;
 import club.eridani.cursa.utils.Timer;
-import net.minecraft.client.gui.Gui;
-import net.minecraft.client.renderer.entity.Render;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.util.ResourceLocation;
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.GL11;
+
+import java.awt.Color;
+import java.io.IOException;
 
 public class VapeLiteClickGUI extends GuiScreen {
     private boolean close = false;
@@ -142,7 +131,7 @@ public class VapeLiteClickGUI extends GuiScreen {
         }
 
 
-        RenderUtils.drawGradient(0, 0, sResolution.getScaledWidth(), sResolution.getScaledHeight(), new Color(255, 130, 164, 100).getRGB(), new Color(0, 0, 0, 30).getRGB());
+        RenderUtil.drawGradient(0, 0, sResolution.getScaledWidth(), sResolution.getScaledHeight(), new Color(255, 130, 164, 100).getRGB(), new Color(0, 0, 0, 30).getRGB());
 //        if (inAnim > 0) {
 //            inAnim -= 5000f / mc.debugFPS;
 //        } else {
@@ -169,7 +158,7 @@ public class VapeLiteClickGUI extends GuiScreen {
 
 
         //绘制主窗口
-        RenderUtils.drawRect(windowX, windowY, windowX + width, windowY + height, new Color(21, 22, 25).getRGB());
+        RenderUtil.drawRect(windowX, windowY, windowX + width, windowY + height, new Color(21, 22, 25).getRGB());
         if (selectMod == null) {
             font.drawString(Cursa.MOD_NAME, windowX + 20, windowY + height - 20, new Color(77, 78, 84).getRGB());
         }
@@ -188,15 +177,15 @@ public class VapeLiteClickGUI extends GuiScreen {
             }
             if (e != ClickType.Settings) {
                 if (e == selectType) {
-                    //RenderUtils.drawImage(typeXAnim[i], windowY + 10, 16, 16, new ResourceLocation("client/vapeclickgui/" + e.name() + ".png"), new Color(255, 255, 255));
+                    //RenderUtil.drawImage(typeXAnim[i], windowY + 10, 16, 16, new ResourceLocation("client/vapeclickgui/" + e.name() + ".png"), new Color(255, 255, 255));
                     font.drawString(e.name(), typeXAnim[i] + 20, windowY + 15, new Color(255, 255, 255).getRGB());
                     typeX += (32 + font.getStringWidth(e.name() + " "));
                 } else {
-                    //RenderUtils.drawImage(typeXAnim[i], windowY + 10, 16, 16, new ResourceLocation("client/vapeclickgui/" + e.name() + ".png"), new Color(79, 80, 86));
+                    //RenderUtil.drawImage(typeXAnim[i], windowY + 10, 16, 16, new ResourceLocation("client/vapeclickgui/" + e.name() + ".png"), new Color(79, 80, 86));
                     typeX += (32);
                 }
             } else {
-                //RenderUtils.drawImage(windowX + width - 20, windowY + 10, 16, 16, new ResourceLocation("client/vapeclickgui/" + e.name() + ".png"), e == selectType ? new Color(255, 255, 255) : new Color(79, 80, 86));
+                //RenderUtil.drawImage(windowX + width - 20, windowY + 10, 16, 16, new ResourceLocation("client/vapeclickgui/" + e.name() + ".png"), e == selectType ? new Color(255, 255, 255) : new Color(79, 80, 86));
             }
             i++;
         }
@@ -211,7 +200,7 @@ public class VapeLiteClickGUI extends GuiScreen {
                 for (Category m : Category.values()) {
                     if (m == modCategory) {
                         font.drawString(m.name(), windowX + 20, cateY, -1);
-                        RenderUtils.drawBorderRect(windowX + 20, hy + font.getHeight() + 2, windowX + 30, hy + font.getHeight() + 4, new Color(51, 112, 203).getRGB(), 0.5);
+                        RenderUtil.drawBorderRect(windowX + 20, hy + font.getHeight() + 2, windowX + 30, hy + font.getHeight() + 4, new Color(51, 112, 203).getRGB(), 0.5);
                         if (isHovered(windowX, windowY, windowX + width, windowY + 20, mouseX, mouseY) && Mouse.isButtonDown(0)) {
                             hy = cateY;
                         } else {
@@ -238,9 +227,9 @@ public class VapeLiteClickGUI extends GuiScreen {
             }
 
             if (selectMod != null) {
-                RenderUtils.drawBorderRect(windowX + 430 + valuemodx, windowY + 60, windowX + width, windowY + height - 20, new Color(32, 31, 35).getRGB(), 0.5);
-                RenderUtils.drawBorderRect(windowX + 430 + valuemodx, windowY + 60, windowX + width, windowY + 85, new Color(39, 38, 42).getRGB(), 0.5);
-                //RenderUtils.drawImage(windowX + 435 + valuemodx, windowY + 65, 16, 16, new ResourceLocation("client/vapeclickgui/back.png"), new Color(82, 82, 85));
+                RenderUtil.drawBorderRect(windowX + 430 + valuemodx, windowY + 60, windowX + width, windowY + height - 20, new Color(32, 31, 35).getRGB(), 0.5);
+                RenderUtil.drawBorderRect(windowX + 430 + valuemodx, windowY + 60, windowX + width, windowY + 85, new Color(39, 38, 42).getRGB(), 0.5);
+                //RenderUtil.drawImage(windowX + 435 + valuemodx, windowY + 65, 16, 16, new ResourceLocation("client/vapeclickgui/back.png"), new Color(82, 82, 85));
                 if (isHovered(windowX + 435 + valuemodx, windowY + 65, windowX + 435 + valuemodx + 16, windowY + 65 + 16, mouseX, mouseY) && Mouse.isButtonDown(0)) {
                     selectMod = null;
                     valuetimer.reset();
@@ -275,14 +264,14 @@ public class VapeLiteClickGUI extends GuiScreen {
                             if (((Boolean) v.getValue())) {
                                 font.drawString(v.getName(), windowX + 445 + valuemodx, valuey + 4, -1);
                                 v.optionAnim = 100;
-                                RenderUtils.drawBorderRect(windowX + width - 30, valuey + 2, windowX + width - 10, valuey + 12, 4, new Color(33, 94, 181, (int) (v.optionAnimNow / 100 * 255)).getRGB());
-                                RenderUtils.drawCircle(windowX + width - 25 + 10 * (v.optionAnimNow / 100f), valuey + 7, 3.5f, new Color(255, 255, 255).getRGB());
+                                RenderUtil.drawBorderRect(windowX + width - 30, valuey + 2, windowX + width - 10, valuey + 12, 4, new Color(33, 94, 181, (int) (v.optionAnimNow / 100 * 255)).getRGB());
+                                RenderUtil.drawCircle(windowX + width - 25 + 10 * (v.optionAnimNow / 100f), valuey + 7, 3.5f, new Color(255, 255, 255).getRGB());
                             } else {
                                 font.drawString(v.getName(), windowX + 445 + valuemodx, valuey + 4, new Color(73, 72, 76).getRGB());
                                 v.optionAnim = 0;
-                                RenderUtils.drawBorderRect(windowX + width - 30, valuey + 2, windowX + width - 10, valuey + 12, 4, new Color(59, 60, 65).getRGB());
-                                RenderUtils.drawBorderRect(windowX + width - 29, valuey + 3, windowX + width - 11, valuey + 11, 3, new Color(32, 31, 35).getRGB());
-                                RenderUtils.drawCircle(windowX + width - 25 + 10 * (v.optionAnimNow / 100f), valuey + 7, 3.5f, new Color(59, 60, 65).getRGB());
+                                RenderUtil.drawBorderRect(windowX + width - 30, valuey + 2, windowX + width - 10, valuey + 12, 4, new Color(59, 60, 65).getRGB());
+                                RenderUtil.drawBorderRect(windowX + width - 29, valuey + 3, windowX + width - 11, valuey + 11, 3, new Color(32, 31, 35).getRGB());
+                                RenderUtil.drawCircle(windowX + width - 25 + 10 * (v.optionAnimNow / 100f), valuey + 7, 3.5f, new Color(59, 60, 65).getRGB());
                             }
                             if (isHovered(windowX + width - 30, valuey + 2, windowX + width - 10, valuey + 12, mouseX, mouseY) && Mouse.isButtonDown(0)) {
                                 if (valuetimer.delay(300)) {
@@ -308,12 +297,12 @@ public class VapeLiteClickGUI extends GuiScreen {
 
                             font.drawString(v.getName(), windowX + 445 + valuemodx, valuey + 5, new Color(73, 72, 76).getRGB());
                             font.drawCenteredString(v.getValue().toString(), windowX + width - 20, valuey + 5, new Color(255, 255, 255).getRGB());
-                            RenderUtils.drawRect(windowX + 450 + valuemodx, valuey + 20, windowX + width - 11, valuey + 21.5f, new Color(77, 76, 79).getRGB());
-                            RenderUtils.drawRect(windowX + 450 + valuemodx, valuey + 20, windowX + 450 + valuemodx + present, valuey + 21.5f, new Color(43, 116, 226).getRGB());
-                            RenderUtils.drawCircle(windowX + 450 + valuemodx + present, valuey + 21f, 5, new Color(32, 31, 35).getRGB());
-                            RenderUtils.drawCircle(windowX + 450 + valuemodx + present, valuey + 21f, 5, new Color(32, 31, 35).getRGB());
-                            RenderUtils.drawCircle(windowX + 450 + valuemodx + present, valuey + 21f, 4, new Color(44, 115, 224).getRGB());
-                            RenderUtils.drawCircle(windowX + 450 + valuemodx + present, valuey + 21f, 4, new Color(44, 115, 224).getRGB());
+                            RenderUtil.drawRect(windowX + 450 + valuemodx, valuey + 20, windowX + width - 11, valuey + 21.5f, new Color(77, 76, 79).getRGB());
+                            RenderUtil.drawRect(windowX + 450 + valuemodx, valuey + 20, windowX + 450 + valuemodx + present, valuey + 21.5f, new Color(43, 116, 226).getRGB());
+                            RenderUtil.drawCircle(windowX + 450 + valuemodx + present, valuey + 21f, 5, new Color(32, 31, 35).getRGB());
+                            RenderUtil.drawCircle(windowX + 450 + valuemodx + present, valuey + 21f, 5, new Color(32, 31, 35).getRGB());
+                            RenderUtil.drawCircle(windowX + 450 + valuemodx + present, valuey + 21f, 4, new Color(44, 115, 224).getRGB());
+                            RenderUtil.drawCircle(windowX + 450 + valuemodx + present, valuey + 21f, 4, new Color(44, 115, 224).getRGB());
 
                             if (isHovered(windowX + 450 + valuemodx, valuey + 18, windowX + width - 11, valuey + 23.5f, mouseX, mouseY) && Mouse.isButtonDown(0)) {
                                 float render2 = ((DoubleSetting) v).getMin().floatValue();
@@ -336,8 +325,8 @@ public class VapeLiteClickGUI extends GuiScreen {
                         ModeSetting modeValue = (ModeSetting) v;
 
                         if (valuey + 4 > windowY + 100 & valuey < (windowY + height)) {
-                            RenderUtils.drawBorderRect(windowX + 445 + valuemodx, valuey + 2, windowX + width - 5, valuey + 22, 2, new Color(46, 45, 48).getRGB());
-                            RenderUtils.drawBorderRect(windowX + 446 + valuemodx, valuey + 3, windowX + width - 6, valuey + 21, 2, new Color(32, 31, 35).getRGB());
+                            RenderUtil.drawBorderRect(windowX + 445 + valuemodx, valuey + 2, windowX + width - 5, valuey + 22, 2, new Color(46, 45, 48).getRGB());
+                            RenderUtil.drawBorderRect(windowX + 446 + valuemodx, valuey + 3, windowX + width - 6, valuey + 21, 2, new Color(32, 31, 35).getRGB());
                             font.drawString(v.getName() + ":" + modeValue.getValue(), windowX + 455 + valuemodx, valuey + 10, new Color(230, 230, 230).getRGB());
                             font.drawString(">", windowX + width - 15, valuey + 9, new Color(73, 72, 76).getRGB());
                             if (isHovered(windowX + 445 + valuemodx, valuey + 2, windowX + width - 5, valuey + 22, mouseX, mouseY) && Mouse.isButtonDown(0) && valuetimer.delay(300)) {
@@ -396,39 +385,39 @@ public class VapeLiteClickGUI extends GuiScreen {
 
                 if (isHovered(windowX + 100 + valuemodx, modY - 10, windowX + 425 + valuemodx, modY + 25, mouseX, mouseY)) {
                     if (m.isEnabled()) {
-                        RenderUtils.drawBorderRect(windowX + 100 + valuemodx, modY - 10, windowX + 425 + valuemodx, modY + 25, new Color(43, 41, 45).getRGB(), 0.5);
+                        RenderUtil.drawBorderRect(windowX + 100 + valuemodx, modY - 10, windowX + 425 + valuemodx, modY + 25, new Color(43, 41, 45).getRGB(), 0.5);
                     } else {
-                        RenderUtils.drawBorderRect(windowX + 100 + valuemodx, modY - 10, windowX + 425 + valuemodx, modY + 25, new Color(35, 35, 35).getRGB(), 0.5);
+                        RenderUtil.drawBorderRect(windowX + 100 + valuemodx, modY - 10, windowX + 425 + valuemodx, modY + 25, new Color(35, 35, 35).getRGB(), 0.5);
                     }
                 } else {
                     if (m.isEnabled()) {
-                        RenderUtils.drawBorderRect(windowX + 100 + valuemodx, modY - 10, windowX + 425 + valuemodx, modY + 25, new Color(36, 34, 38).getRGB(), 0.5);
+                        RenderUtil.drawBorderRect(windowX + 100 + valuemodx, modY - 10, windowX + 425 + valuemodx, modY + 25, new Color(36, 34, 38).getRGB(), 0.5);
                     } else {
-                        RenderUtils.drawBorderRect(windowX + 100 + valuemodx, modY - 10, windowX + 425 + valuemodx, modY + 25, new Color(32, 31, 33).getRGB(), 0.5);
+                        RenderUtil.drawBorderRect(windowX + 100 + valuemodx, modY - 10, windowX + 425 + valuemodx, modY + 25, new Color(32, 31, 33).getRGB(), 0.5);
                     }
                 }
-                RenderUtils.drawBorderRect(windowX + 100 + valuemodx, modY - 10, windowX + 125 + valuemodx, modY + 25, new Color(37, 35, 39).getRGB(), 0.5);
-                RenderUtils.drawBorderRect(windowX + 410 + valuemodx, modY - 10, windowX + 425 + valuemodx, modY + 25, new Color(39, 38, 42).getRGB(), 0.5);
+                RenderUtil.drawBorderRect(windowX + 100 + valuemodx, modY - 10, windowX + 125 + valuemodx, modY + 25, new Color(37, 35, 39).getRGB(), 0.5);
+                RenderUtil.drawBorderRect(windowX + 410 + valuemodx, modY - 10, windowX + 425 + valuemodx, modY + 25, new Color(39, 38, 42).getRGB(), 0.5);
                 font.drawString(".", windowX + 416 + valuemodx, modY - 5, new Color(66, 64, 70).getRGB());
                 font.drawString(".", windowX + 416 + valuemodx, modY - 1, new Color(66, 64, 70).getRGB());
                 font.drawString(".", windowX + 416 + valuemodx, modY + 3, new Color(66, 64, 70).getRGB());
 
                 if (m.isEnabled()) {
                     font.drawString(m.name, windowX + 140 + valuemodx, modY + 5, new Color(220, 220, 220).getRGB());
-                    RenderUtils.drawBorderRect(windowX + 100 + valuemodx, modY - 10, windowX + 125 + valuemodx, modY + 25, new Color(41, 117, 221, (int) (m.optionAnimNow / 100f * 255)).getRGB(), 0.5);
-                    //RenderUtils.draImage(windowX + 105 + valuemodx, modY, 16, 16, new ResourceLocation("client/vapeclickgui/module.png"), new Color(220, 220, 220), 0.5);
+                    RenderUtil.drawBorderRect(windowX + 100 + valuemodx, modY - 10, windowX + 125 + valuemodx, modY + 25, new Color(41, 117, 221, (int) (m.optionAnimNow / 100f * 255)).getRGB(), 0.5);
+                    //RenderUtil.draImage(windowX + 105 + valuemodx, modY, 16, 16, new ResourceLocation("client/vapeclickgui/module.png"), new Color(220, 220, 220), 0.5);
                     m.optionAnim = 100;
 
-                    RenderUtils.drawBorderRect(windowX + 380 + valuemodx, modY + 2, windowX + 400 + valuemodx, modY + 12, 4, new Color(33, 94, 181, (int) (m.optionAnimNow / 100f * 255)).getRGB());
-                    RenderUtils.drawCircle(windowX + 385 + 10 * m.optionAnimNow / 100 + valuemodx, modY + 7, 3.5f, new Color(255, 255, 255).getRGB());
+                    RenderUtil.drawBorderRect(windowX + 380 + valuemodx, modY + 2, windowX + 400 + valuemodx, modY + 12, 4, new Color(33, 94, 181, (int) (m.optionAnimNow / 100f * 255)).getRGB());
+                    RenderUtil.drawCircle(windowX + 385 + 10 * m.optionAnimNow / 100 + valuemodx, modY + 7, 3.5f, new Color(255, 255, 255).getRGB());
                 } else {
                     font.drawString(m.name, windowX + 140 + valuemodx, modY + 5, new Color(108, 109, 113).getRGB());
-                    //RenderUtils.drawImage(windowX + 105 + valuemodx, modY, 16, 16, new ResourceLocation("client/vapeclickgui/module.png"), new Color(92, 90, 94));
+                    //RenderUtil.drawImage(windowX + 105 + valuemodx, modY, 16, 16, new ResourceLocation("client/vapeclickgui/module.png"), new Color(92, 90, 94));
                     m.optionAnim = 0;
 
-                    RenderUtils.drawBorderRect(windowX + 380 + valuemodx, modY + 2, windowX + 400 + valuemodx, modY + 12, 4, new Color(59, 60, 65).getRGB());
-                    RenderUtils.drawBorderRect(windowX + 381 + valuemodx, modY + 3, windowX + 399 + valuemodx, modY + 11, 3, new Color(29, 27, 31).getRGB());
-                    RenderUtils.drawCircle(windowX + 385 + 10 * m.optionAnimNow / 100 + valuemodx, modY + 7, 3.5f, new Color(59, 60, 65).getRGB());
+                    RenderUtil.drawBorderRect(windowX + 380 + valuemodx, modY + 2, windowX + 400 + valuemodx, modY + 12, 4, new Color(59, 60, 65).getRGB());
+                    RenderUtil.drawBorderRect(windowX + 381 + valuemodx, modY + 3, windowX + 399 + valuemodx, modY + 11, 3, new Color(29, 27, 31).getRGB());
+                    RenderUtil.drawCircle(windowX + 385 + 10 * m.optionAnimNow / 100 + valuemodx, modY + 7, 3.5f, new Color(59, 60, 65).getRGB());
                 }
 
                 if (m.optionAnimNow != m.optionAnim) {

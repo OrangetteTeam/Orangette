@@ -5,9 +5,6 @@ import club.eridani.cursa.setting.Setting;
 import club.eridani.cursa.setting.settings.BooleanSetting;
 import club.eridani.cursa.utils.ColorUtil;
 import club.eridani.cursa.utils.RenderUtil;
-import club.eridani.cursa.utils.RenderUtils;
-
-import java.awt.*;
 
 public class BooleanButton extends Component {
     private BooleanSetting setting;
@@ -31,7 +28,7 @@ public class BooleanButton extends Component {
         targetX = setting.getValue() ? buttonX + 6 : buttonX + buttonWidth - 6;
         if(eclipseX == 0) eclipseX = targetX;
         eclipseX += (targetX - eclipseX) * 0.3;
-        RenderUtils.drawCircle(eclipseX , buttonY + 5 , 4 , ColorUtil.toRGBA(250 , 250 , 250 , 255));
+        RenderUtil.drawCircle(eclipseX , buttonY + 5 , 4 , ColorUtil.toRGBA(250 , 250 , 250 , 255));
 
         return this.height;
     }
