@@ -3,6 +3,7 @@ package club.eridani.cursa.module.modules.client;
 import club.eridani.cursa.client.ConfigManager;
 import club.eridani.cursa.common.annotations.Module;
 import club.eridani.cursa.gui.CursaClickGUI;
+import club.eridani.cursa.gui.MainMenu;
 import club.eridani.cursa.gui.sigma.SigmaGui;
 import club.eridani.cursa.gui.vapelite.VapeLiteGui;
 import club.eridani.cursa.module.Category;
@@ -24,8 +25,8 @@ public class ClickGui extends ModuleBase {
     public void onEnable() {
         if (nullCheck()) return;
 
-        if (gui.getValue().equals("Cursa") && !(mc.currentScreen instanceof CursaClickGUI))
-            mc.displayGuiScreen(new CursaClickGUI());
+        if (gui.getValue().equals("Cursa") && !(mc.currentScreen instanceof MainMenu))
+            mc.displayGuiScreen(new MainMenu());
         if (gui.getValue().equals("Vape") && !(mc.currentScreen instanceof VapeLiteGui))
             mc.displayGuiScreen(new VapeLiteGui());
         if (gui.getValue().equals("Sigma") && !(mc.currentScreen instanceof SigmaGui))
