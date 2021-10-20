@@ -36,7 +36,7 @@ public class Blocker extends ModuleBase {
     public Setting<Boolean> render = setting("Render", true);
     public Setting<Integer> cevRed = setting("CevRed", 255, 0, 255);
     public Setting<Integer> cevGreen = setting("CevGreen", 0, 0, 255);
-    public Setting<Integer> cevBlue = setting("CevRed", 0, 0, 255);
+    public Setting<Integer> cevBlue = setting("CevBlue", 0, 0, 255);
     public Setting<Integer> cevAlpha = setting("CevAlpha", 70, 0, 255);
     private List<BlockPos> cevPositions = new ArrayList<>();
 
