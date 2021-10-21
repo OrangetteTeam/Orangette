@@ -54,6 +54,7 @@ public class Cursa {
                 it.launch(FriendManager::init);
                 it.launch(ConfigManager::init);
                 it.launch(RPCManager::init);
+                it.launch(MusicManager::init);
             });
         });
         log.info("Took " + tookTime + "ms to launch Cursa!");
