@@ -20,7 +20,7 @@ public class MixinLayerDeadmau5Head {
 
     @Redirect(method = "doRenderLayer(Lnet/minecraft/client/entity/AbstractClientPlayer;FFFFFFF)V", at = @At(value = "INVOKE" , target = "Ljava/lang/String;equals(Ljava/lang/Object;)Z"))
     public boolean equals(String s, Object anObject) {
-        return Objects.requireNonNull(ModuleManager.getModuleByClass(MickeyMouse.class)).isEnabled();
+        return MickeyMouse.INSTANCE.isEnabled();
     }
 
     @Redirect(method = "doRenderLayer(Lnet/minecraft/client/entity/AbstractClientPlayer;FFFFFFF)V", at = @At(value = "INVOKE" , target = "Lnet/minecraft/client/entity/AbstractClientPlayer;hasSkin()Z"))
