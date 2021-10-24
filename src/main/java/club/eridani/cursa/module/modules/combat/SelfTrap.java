@@ -28,14 +28,10 @@ public class SelfTrap extends ModuleBase {
                     new BlockPos(0, 2, 1),
                     new BlockPos(0, 2, 0)
             };
-
-            {
-                //ここに最初のblock置くコード書く
-            }
-
+            
             {
                 entity = mc.player;
-                if (entity == null)disable();
+                if (entity == null) disable();
                 BlockPos pos = new BlockPos(entity);
 
                 ob = InventoryUtil.getBlockHotbar(Blocks.OBSIDIAN);//黒曜石をHotbarから探す
@@ -43,7 +39,7 @@ public class SelfTrap extends ModuleBase {
                 mc.playerController.updateController();//操作を更新
                 for (BlockPos add : block) {
 
-                    BlockInteractionHelper.placeBlock(pos.add(add),false);//Block設置
+                    BlockInteractionHelper.placeBlock(pos.add(add), false);//Block設置
 
                 }
             }
