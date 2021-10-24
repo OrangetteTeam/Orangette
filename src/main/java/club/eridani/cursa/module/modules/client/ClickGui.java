@@ -13,7 +13,7 @@ import org.lwjgl.input.Keyboard;
 
 @Module(name = "ClickGUI", category = Category.CLIENT, keyCode = Keyboard.KEY_O)
 public class ClickGui extends ModuleBase {
-    public Setting<String> gui = setting("Type", "Sigma", "Cursa", "Vape", "Sigma");
+    public Setting<String> gui = setting("Type", "Sigma", "Cursa", "Sigma");
 
     public static ClickGui instance;
 
@@ -26,7 +26,7 @@ public class ClickGui extends ModuleBase {
         if (nullCheck()) return;
 
         if (gui.getValue().equals("Cursa") && !(mc.currentScreen instanceof MainMenu))
-            mc.displayGuiScreen(new MainMenu());
+            mc.displayGuiScreen(new CursaClickGUI());
         if (gui.getValue().equals("Vape") && !(mc.currentScreen instanceof VapeLiteGui))
             mc.displayGuiScreen(new VapeLiteGui());
         if (gui.getValue().equals("Sigma") && !(mc.currentScreen instanceof SigmaGui))
