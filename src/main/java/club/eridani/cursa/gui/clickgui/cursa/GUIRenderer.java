@@ -1,7 +1,7 @@
-package club.eridani.cursa.gui;
+package club.eridani.cursa.gui.clickgui.cursa;
 
 import club.eridani.cursa.client.ModuleManager;
-import club.eridani.cursa.gui.components.ModuleButton;
+import club.eridani.cursa.gui.clickgui.cursa.components.ModuleButton;
 import club.eridani.cursa.module.Category;
 import club.eridani.cursa.module.modules.client.ClickGui;
 import org.lwjgl.input.Keyboard;

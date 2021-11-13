@@ -2,10 +2,10 @@ package club.eridani.cursa.module.modules.client;
 
 import club.eridani.cursa.client.ConfigManager;
 import club.eridani.cursa.common.annotations.Module;
-import club.eridani.cursa.gui.CursaClickGUI;
-import club.eridani.cursa.gui.MainMenu;
-import club.eridani.cursa.gui.sigma.SigmaGui;
-import club.eridani.cursa.gui.vapelite.VapeLiteGui;
+import club.eridani.cursa.gui.clickgui.cursa.CursaClickGUI;
+import club.eridani.cursa.gui.mainmenu.MainMenu;
+import club.eridani.cursa.gui.clickgui.sigma.SigmaGui;
+import club.eridani.cursa.gui.clickgui.vapelite.VapeLiteGui;
 import club.eridani.cursa.module.Category;
 import club.eridani.cursa.module.ModuleBase;
 import club.eridani.cursa.setting.Setting;

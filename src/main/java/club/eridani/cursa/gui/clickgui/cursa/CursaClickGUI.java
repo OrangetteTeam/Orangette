@@ -1,4 +1,4 @@
-package club.eridani.cursa.gui;
+package club.eridani.cursa.gui.clickgui.cursa;
 
 import club.eridani.cursa.client.GUIManager;
 import club.eridani.cursa.client.ModuleManager;

@@ -1,4 +1,4 @@
-package club.eridani.cursa.gui.particle;
+package club.eridani.cursa.gui.mainmenu.particle;
 
 import net.minecraft.client.gui.ScaledResolution;
 import org.apache.commons.lang3.RandomUtils;

@@ -1,8 +1,8 @@
-package club.eridani.cursa.gui.sigma;
+package club.eridani.cursa.gui.clickgui.sigma;
 
 import club.eridani.cursa.client.FontManager;
 import club.eridani.cursa.client.ModuleManager;
-import club.eridani.cursa.gui.sigma.component.ModuleButton;
+import club.eridani.cursa.gui.clickgui.sigma.component.ModuleButton;
 import club.eridani.cursa.module.Category;
 import club.eridani.cursa.utils.ColorUtil;
 import club.eridani.cursa.utils.RenderUtil;

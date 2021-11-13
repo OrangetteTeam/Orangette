@@ -1,10 +1,8 @@
-package club.eridani.cursa.gui.sigma;
+package club.eridani.cursa.gui.clickgui.sigma;
 
 import club.eridani.cursa.client.FontManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-
-import java.io.IOException;
 
 public class Component {
     public Minecraft mc = Minecraft.getMinecraft();

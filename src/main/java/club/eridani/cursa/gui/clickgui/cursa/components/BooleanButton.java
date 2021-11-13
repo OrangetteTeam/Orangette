@@ -1,8 +1,8 @@
-package club.eridani.cursa.gui.components;
+package club.eridani.cursa.gui.clickgui.cursa.components;
 
 import club.eridani.cursa.client.GUIManager;
-import club.eridani.cursa.gui.Component;
-import club.eridani.cursa.gui.Panel;
+import club.eridani.cursa.gui.clickgui.cursa.Component;
+import club.eridani.cursa.gui.clickgui.cursa.Panel;
 import club.eridani.cursa.setting.Setting;
 import club.eridani.cursa.utils.SoundUtil;
 import net.minecraft.client.gui.Gui;

@@ -1,7 +1,7 @@
-package club.eridani.cursa.gui;
+package club.eridani.cursa.gui.mainmenu;
 
 import club.eridani.cursa.client.FontManager;
-import club.eridani.cursa.gui.particle.ParticleManager;
+import club.eridani.cursa.gui.mainmenu.particle.ParticleManager;
 import club.eridani.cursa.utils.AnimationUtils;
 import club.eridani.cursa.utils.ClickUtils;
 import club.eridani.cursa.utils.RenderUtil;
