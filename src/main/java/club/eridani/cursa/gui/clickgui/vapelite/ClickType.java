@@ -1,4 +1,4 @@
-package club.eridani.cursa.gui.vapelite;
+package club.eridani.cursa.gui.clickgui.vapelite;
 
 public enum ClickType {
 

@@ -1,9 +1,9 @@
-package club.eridani.cursa.gui;
+package club.eridani.cursa.gui.clickgui.cursa;
 
 import club.eridani.cursa.client.FontManager;
 import club.eridani.cursa.client.GUIManager;
 import club.eridani.cursa.client.ModuleManager;
-import club.eridani.cursa.gui.components.ModuleButton;
+import club.eridani.cursa.gui.clickgui.cursa.components.ModuleButton;
 import club.eridani.cursa.gui.font.CFontRenderer;
 import club.eridani.cursa.module.Category;
 import club.eridani.cursa.module.ModuleBase;

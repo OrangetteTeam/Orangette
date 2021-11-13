@@ -1,4 +1,4 @@
-package club.eridani.cursa.gui.particle;
+package club.eridani.cursa.gui.mainmenu.particle;
 
 import java.awt.Color;
 import java.util.ArrayList;

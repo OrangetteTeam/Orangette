@@ -9,7 +9,8 @@ public enum Category {
     RENDER("Render", true),
     CLIENT("Client", true),
 
-    HIDDEN("Hidden", false);
+    HIDDEN("Hidden", false),
+    HUD("HUD" , false);
 
     public String categoryName;
     public boolean visible;

@@ -1,8 +1,8 @@
 package club.eridani.cursa.client;
 
 import club.eridani.cursa.Cursa;
-import club.eridani.cursa.gui.GUIRenderer;
-import club.eridani.cursa.gui.Panel;
+import club.eridani.cursa.gui.clickgui.cursa.GUIRenderer;
+import club.eridani.cursa.gui.clickgui.cursa.Panel;
 import club.eridani.cursa.module.ModuleBase;
 import club.eridani.cursa.module.modules.player.FakePlayer;
 import club.eridani.cursa.setting.Setting;

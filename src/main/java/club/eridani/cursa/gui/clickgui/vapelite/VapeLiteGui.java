@@ -1,4 +1,4 @@
-package club.eridani.cursa.gui.vapelite;
+package club.eridani.cursa.gui.clickgui.vapelite;
 
 import club.eridani.cursa.Cursa;
 import club.eridani.cursa.client.FontManager;

@@ -1,11 +1,11 @@
-package club.eridani.cursa.gui.sigma;
+package club.eridani.cursa.gui.clickgui.sigma;
 
 import club.eridani.cursa.client.FontManager;
 import club.eridani.cursa.client.ModuleManager;
-import club.eridani.cursa.gui.sigma.component.BindButton;
-import club.eridani.cursa.gui.sigma.component.BooleanButton;
-import club.eridani.cursa.gui.sigma.component.ModeButton;
-import club.eridani.cursa.gui.sigma.component.NumberSlider;
+import club.eridani.cursa.gui.clickgui.sigma.component.BindButton;
+import club.eridani.cursa.gui.clickgui.sigma.component.BooleanButton;
+import club.eridani.cursa.gui.clickgui.sigma.component.ModeButton;
+import club.eridani.cursa.gui.clickgui.sigma.component.NumberSlider;
 import club.eridani.cursa.module.Category;
 import club.eridani.cursa.module.ModuleBase;
 import club.eridani.cursa.module.modules.client.ClickGui;
@@ -51,7 +51,7 @@ public class SigmaGui extends GuiScreen {
         if (panels.isEmpty()) {
             int sx = 20;
             for (Category c : Category.values()) {
-                if (c.equals(Category.HIDDEN)) continue;
+                if (!c.visible) continue;
                 panels.add(new Panel(c, sx, 30));
                 sx += 120;
             }

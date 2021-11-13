@@ -1,6 +1,6 @@
 package club.eridani.cursa.gui.musicplayer;
 
-import club.eridani.cursa.gui.sigma.Component;
+import club.eridani.cursa.gui.clickgui.sigma.Component;
 import club.eridani.cursa.utils.ColorUtil;
 import club.eridani.cursa.utils.RenderUtil;
 import net.minecraft.client.Minecraft;

@@ -1,9 +1,9 @@
-package club.eridani.cursa.gui.components;
+package club.eridani.cursa.gui.clickgui.cursa.components;
 
 import club.eridani.cursa.client.FontManager;
 import club.eridani.cursa.client.GUIManager;
-import club.eridani.cursa.gui.Component;
-import club.eridani.cursa.gui.Panel;
+import club.eridani.cursa.gui.clickgui.cursa.Component;
+import club.eridani.cursa.gui.clickgui.cursa.Panel;
 import club.eridani.cursa.module.ModuleBase;
 import club.eridani.cursa.setting.NumberSetting;
 import club.eridani.cursa.setting.Setting;
@@ -16,9 +16,9 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ModuleButton extends club.eridani.cursa.gui.Component {
+public class ModuleButton extends Component {
 
-    public List<club.eridani.cursa.gui.Component> settings = new ArrayList<>();
+    public List<Component> settings = new ArrayList<>();
     ModuleBase module;
     public Timer buttonTimer = new Timer();
 
@@ -72,7 +72,7 @@ public class ModuleButton extends club.eridani.cursa.gui.Component {
 
     @Override
     public void mouseReleased(int mouseX, int mouseY, int state) {
-        for (club.eridani.cursa.gui.Component setting : settings) {
+        for (Component setting : settings) {
             setting.mouseReleased(mouseX, mouseY, state);
         }
     }

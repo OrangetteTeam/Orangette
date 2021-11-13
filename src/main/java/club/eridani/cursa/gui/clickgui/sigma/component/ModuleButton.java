@@ -1,7 +1,7 @@
-package club.eridani.cursa.gui.sigma.component;
+package club.eridani.cursa.gui.clickgui.sigma.component;
 
-import club.eridani.cursa.gui.sigma.Component;
-import club.eridani.cursa.gui.sigma.SigmaGui;
+import club.eridani.cursa.gui.clickgui.sigma.Component;
+import club.eridani.cursa.gui.clickgui.sigma.SigmaGui;
 import club.eridani.cursa.module.ModuleBase;
 import club.eridani.cursa.utils.ColorUtil;
 import club.eridani.cursa.utils.RenderUtil;
