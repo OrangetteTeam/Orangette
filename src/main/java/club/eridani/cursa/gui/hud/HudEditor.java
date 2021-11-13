@@ -1,7 +1,12 @@
-package club.eridani.cursa.gui.clickgui.sigma;
+package club.eridani.cursa.gui.hud;
 
 import club.eridani.cursa.client.FontManager;
 import club.eridani.cursa.client.ModuleManager;
+import club.eridani.cursa.common.annotations.Module;
+import club.eridani.cursa.event.CursaEvent;
+import club.eridani.cursa.gui.clickgui.sigma.Component;
+import club.eridani.cursa.gui.clickgui.sigma.Panel;
+import club.eridani.cursa.gui.clickgui.sigma.SigmaGui;
 import club.eridani.cursa.gui.clickgui.sigma.component.BindButton;
 import club.eridani.cursa.gui.clickgui.sigma.component.BooleanButton;
 import club.eridani.cursa.gui.clickgui.sigma.component.ModeButton;
@@ -9,6 +14,7 @@ import club.eridani.cursa.gui.clickgui.sigma.component.NumberSlider;
 import club.eridani.cursa.module.Category;
 import club.eridani.cursa.module.ModuleBase;
 import club.eridani.cursa.module.modules.client.ClickGui;
+import club.eridani.cursa.module.modules.client.HUD;
 import club.eridani.cursa.utils.ColorUtil;
 import club.eridani.cursa.utils.RenderUtil;
 import net.minecraft.client.Minecraft;
@@ -21,14 +27,13 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 
-public class SigmaGui extends GuiScreen {
-    public static SigmaGui INSTANCE;
-    private static List<Panel> panels = new ArrayList<>();
+public class HudEditor extends GuiScreen {
+    public static HudEditor INSTANCE;
+    private static Panel panel;
     private List<Component> components = new ArrayList<>();
     private ModuleBase settingModule;
     private boolean settingWindowVisible = false;
@@ -45,26 +50,8 @@ public class SigmaGui extends GuiScreen {
         target = 1.0F;
         easing = 10.0F;
         closing = false;
-        if (Minecraft.getMinecraft().entityRenderer.getShaderGroup() != null)
-            Minecraft.getMinecraft().entityRenderer.getShaderGroup().deleteShaderGroup();
-        Minecraft.getMinecraft().entityRenderer.loadShader(new ResourceLocation("shaders/post/blur.json"));
-
-        if (panels.isEmpty()) {
-            int sx = 20;
-            for (Category c : Category.values()) {
-                if (!c.visible) continue;
-                panels.add(new Panel(c, sx, 30));
-                sx += 120;
-            }
-        }
-    }
-
-    @Override
-    public void onGuiClosed() {
-        if (Minecraft.getMinecraft().entityRenderer.getShaderGroup() != null)
-            Minecraft.getMinecraft().entityRenderer.getShaderGroup().deleteShaderGroup();
-        if (ModuleManager.getModule(ClickGui.class).isEnabled()) {
-            ModuleManager.getModule(ClickGui.class).disable();
+        if (panel == null) {
+            panel = new Panel(Category.HUD , 20 , 20);
         }
     }
 
@@ -76,7 +63,7 @@ public class SigmaGui extends GuiScreen {
         GlStateManager.scale(easing, easing, 0);
         GlStateManager.translate(-sr.getScaledWidth() / 2, -sr.getScaledHeight() / 2, 0);
         easing = smoothTrans(easing, target);
-        execute(p -> p.render(mouseX, mouseY, easing, !settingWindowVisible));
+        panel.render(mouseX, mouseY, easing, !settingWindowVisible);
         if (closing && Math.abs(10.0 - easing) < 1) mc.displayGuiScreen(null);
         //setting window
         int t = settingWindowVisible ? 130 : 0;
@@ -99,15 +86,7 @@ public class SigmaGui extends GuiScreen {
             AtomicInteger h = new AtomicInteger((int) ((int) windowY + 5 + offset));
             components.forEach(c -> h.updateAndGet(he -> c.doRender((int) windowX, he, mouseX, mouseY) + he));
             GL11.glDisable(GL11.GL_SCISSOR_TEST);
-            //scrollbar
-            /*
-            float scrollRadio = h.get() < windowHeight ? 1.0F : (float)windowHeight / h.get();
-            float scrollWidth = 2;
-            float scrollHeight = 224 * scrollRadio;
-            float scrollX = windowX + windowWidth - scrollWidth - 3;
-            float scrollY = windowY;
-            RenderUtil.drawRect(scrollX , scrollY , scrollX + scrollWidth , scrollY + scrollHeight , ColorUtil.toRGBA(55,55,55 , 255));
-             */
+
             if (closingSettingWindow && Math.abs(windowScale - wScale) < 1) {
                 settingWindowVisible = false;
                 closingSettingWindow = false;
@@ -120,14 +99,13 @@ public class SigmaGui extends GuiScreen {
             }
             offset += (targetOffset - offset) * 0.3;
             if (targetOffset > 0) targetOffset = 0;
-            /*
-            if(h.get() < windowHeight){
-                if(targetOffset < 0) targetOffset = 0;
-            }
-            else{
-                if(scrollRadio > 1.0) targetOffset = (h.get() - windowHeight) * -1;
-            }
-             */
+        }
+        else {
+            ModuleManager.getModules().forEach(m -> {
+                if(m instanceof Hud) {
+                    ((Hud)m).update(mouseX , mouseY);
+                }
+            });
         }
     }
 
@@ -139,14 +117,25 @@ public class SigmaGui extends GuiScreen {
     public void mouseClicked(int mouseX, int mouseY, int mouseButton) {
         if (settingWindowVisible && !isMouseHovering(mouseX, mouseY, windowX, windowY, windowWidth, windowHeight))
             toggleSettingWindowVisible();
-        if (!settingWindowVisible) execute(p -> p.mouseClicked(mouseX, mouseY, mouseButton));
+
+        if (!settingWindowVisible) panel.mouseClicked(mouseX, mouseY, mouseButton);
         else components.forEach(c -> c.mouseClicked(mouseX, mouseY, mouseButton));
+
+        if(!settingWindowVisible && !isMouseHovering(mouseX , mouseY , panel.x , panel.y , panel.width , 200)) {
+            for(ModuleBase m : ModuleManager.getModules()) {
+                if(m instanceof Hud) {
+                    if(((Hud)m).mouseClicked(mouseX , mouseY , mouseButton)) {
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     @Override
     public void mouseReleased(int mouseX, int mouseY, int state) {
         if (settingWindowVisible) components.forEach(c -> c.mouseReleased(mouseX, mouseY, state));
-        execute(p -> p.mouseReleased(mouseX, mouseY, state));
+        panel.mouseReleased(mouseX, mouseY, state);
     }
 
     public Boolean isMouseHovering(float mouseX, float mouseY, float cx, float cy, float cw, float ch) {
@@ -194,17 +183,7 @@ public class SigmaGui extends GuiScreen {
         components.add(new BindButton(module));
     }
 
-    private void execute(Consumer<? super Panel> t) {
-        panels.forEach(t);
-    }
-
     public float smoothTrans(double current, double last) {
         return (float) (current * Minecraft.getMinecraft().timer.renderPartialTicks + (last * (1.0f - Minecraft.getMinecraft().timer.renderPartialTicks)));
-    }
-
-    public void swap(Panel instance) {
-        int index = panels.indexOf(instance);
-        if(index == -1) return;
-        Collections.swap(panels , index , 0);
     }
 }

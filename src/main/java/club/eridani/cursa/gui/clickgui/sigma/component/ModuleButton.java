@@ -2,7 +2,9 @@ package club.eridani.cursa.gui.clickgui.sigma.component;
 
 import club.eridani.cursa.gui.clickgui.sigma.Component;
 import club.eridani.cursa.gui.clickgui.sigma.SigmaGui;
+import club.eridani.cursa.gui.hud.HudEditor;
 import club.eridani.cursa.module.ModuleBase;
+import club.eridani.cursa.module.modules.client.HUD;
 import club.eridani.cursa.utils.ColorUtil;
 import club.eridani.cursa.utils.RenderUtil;
 
@@ -32,8 +34,14 @@ public class ModuleButton extends Component {
         if (isMouseHovering(mouseX, mouseY)) {
             if (mouseButton == 0) module.toggle();
             if (mouseButton == 1) {
-                SigmaGui.INSTANCE.setSettingModule(module);
-                SigmaGui.INSTANCE.toggleSettingWindowVisible();
+                if(HUD.INSTANCE.isEnabled()) {
+                    HudEditor.INSTANCE.setSettingModule(module);
+                    HudEditor.INSTANCE.toggleSettingWindowVisible();
+                }
+                else {
+                    SigmaGui.INSTANCE.setSettingModule(module);
+                    SigmaGui.INSTANCE.toggleSettingWindowVisible();
+                }
             }
         }
     }
