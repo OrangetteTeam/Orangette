@@ -13,7 +13,9 @@ import club.eridani.cursa.event.events.client.SettingUpdateEvent;
 import club.eridani.cursa.event.events.network.PacketEvent;
 import club.eridani.cursa.event.events.render.RenderOverlayEvent;
 import club.eridani.cursa.event.events.render.RenderWorldEvent;
+import club.eridani.cursa.gui.hud.Hud;
 import club.eridani.cursa.module.ModuleBase;
+import club.eridani.cursa.module.modules.client.HUD;
 import club.eridani.cursa.notification.NotificationManager;
 
 import java.util.List;
@@ -82,6 +84,15 @@ public class ModuleBus extends ListenableImpl {
 
     public void onRenderTick(RenderOverlayEvent event) {
         runBlocking(it -> modules.forEach(module -> {
+            try {
+                if(module instanceof Hud)
+                    ((Hud)module).onRender(event.getScaledResolution());
+
+            } catch (Exception exception) {
+                NotificationManager.fatal("Error while running onRender(on HUD)!");
+                exception.printStackTrace();
+            }
+
             try {
                 module.onRender(event);
             } catch (Exception exception) {

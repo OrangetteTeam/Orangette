@@ -16,8 +16,11 @@ import java.util.function.Consumer;
 
 public class Panel extends Component {
     private float offset, targetOffset;
+    public float moduleHeight;
     private List<ModuleButton> buttons = new ArrayList<>();
     private Category category;
+    private int dX , dY;
+    private boolean dragging;
 
     public Panel(Category category, int x, int y) {
         this.category = category;
@@ -45,10 +48,17 @@ public class Panel extends Component {
         });
         GL11.glDisable(GL11.GL_SCISSOR_TEST);
 
-        if (isMouseHovering(mouseX, mouseY, x, y, width, this.height + 200) && doMouseAction) {
-            int dWheel = Mouse.getDWheel();
-            if (dWheel < 0) targetOffset -= 15;
-            else if (dWheel > 0) targetOffset += 15;
+        if(doMouseAction) {
+            if(dragging) {
+                this.x = mouseX + dX;
+                this.y = mouseY + dY;
+            }
+
+            if (isMouseHovering(mouseX, mouseY, x, y, width, this.height + 200)) {
+                int dWheel = Mouse.getDWheel();
+                if (dWheel < 0) targetOffset -= 15;
+                else if (dWheel > 0) targetOffset += 15;
+            }
         }
         offset += (targetOffset - offset) * 0.3;
         if (targetOffset > 0) targetOffset = 0;
@@ -59,6 +69,17 @@ public class Panel extends Component {
     @Override
     public void mouseClicked(int mouseX, int mouseY, int mouseButton) {
         execute(p -> p.mouseClicked(mouseX, mouseY, mouseButton));
+        if(isMouseHovering(mouseX , mouseY)) {
+            dX = x - mouseX;
+            dY = y - mouseY;
+            dragging = true;
+            SigmaGui.INSTANCE.swap(this);
+        }
+    }
+
+    @Override
+    public void mouseReleased(int mouseX , int mouseY, int mouseButton) {
+        dragging = false;
     }
 
     private void execute(Consumer<? super ModuleButton> t) {

@@ -21,6 +21,7 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
@@ -145,6 +146,7 @@ public class SigmaGui extends GuiScreen {
     @Override
     public void mouseReleased(int mouseX, int mouseY, int state) {
         if (settingWindowVisible) components.forEach(c -> c.mouseReleased(mouseX, mouseY, state));
+        execute(p -> p.mouseReleased(mouseX, mouseY, state));
     }
 
     public Boolean isMouseHovering(float mouseX, float mouseY, float cx, float cy, float cw, float ch) {
@@ -198,5 +200,11 @@ public class SigmaGui extends GuiScreen {
 
     public float smoothTrans(double current, double last) {
         return (float) (current * Minecraft.getMinecraft().timer.renderPartialTicks + (last * (1.0f - Minecraft.getMinecraft().timer.renderPartialTicks)));
+    }
+
+    public void swap(Panel instance) {
+        int index = panels.indexOf(instance);
+        if(index == -1) return;
+        Collections.swap(panels , index , 0);
     }
 }
