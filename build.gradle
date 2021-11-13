@@ -79,8 +79,6 @@ dependencies {
         exclude module: 'jna'
     }
 
-    addLib('com.sedmelluq:lavaplayer:1.3.77')
-
     compileOnly('org.jetbrains:annotations:20.1.0')
 
     implementation configurations.addLib
