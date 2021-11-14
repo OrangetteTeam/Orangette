@@ -26,6 +26,7 @@
   ],
   "client": [
     "entity.MixinAbstractClientPlayer",
+    "entity.MixinPlayerControllerMP",
     "render.MixinLayerDeadmau5Head",
     "render.MixinModelBiped"
   ]
