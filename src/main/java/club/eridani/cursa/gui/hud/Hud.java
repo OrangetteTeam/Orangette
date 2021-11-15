@@ -62,9 +62,9 @@ public class Hud extends ModuleBase {
         return y.getValue();
     }
 
-    public void setSize(int width , int height) {
-        this.width = width;
-        this.height = height;
+    public void setSize(float width , float height) {
+        this.width = (int)width;
+        this.height = (int)height;
     }
 
     public void setWidth(int width) {
