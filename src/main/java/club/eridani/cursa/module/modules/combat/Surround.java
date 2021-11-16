@@ -21,6 +21,7 @@ public class Surround extends ModuleBase {
     int ob;
     EntityPlayer entity;
 
+    public Setting<Boolean> autoDisable = setting(" AutoDisable", true);
 
     @Override
     public void onTick() {
@@ -69,6 +70,9 @@ public class Surround extends ModuleBase {
     public void onKeyEvent(KeyEvent event) {
         if (event.getKey() == mc.gameSettings.keyBindJump.getKeyCode()) {
             disable();
+
+            if (autoDisable.getValue() == true)
+                disable();
         }
     }
 }
