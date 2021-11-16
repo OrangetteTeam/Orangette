@@ -30,6 +30,7 @@ public class SelfTrap extends ModuleBase {
             };
             
             {
+                InventoryUtil.push();
                 entity = mc.player;
                 if (entity == null) disable();
                 BlockPos pos = new BlockPos(entity);
@@ -42,6 +43,7 @@ public class SelfTrap extends ModuleBase {
                     BlockInteractionHelper.placeBlock(pos.add(add), false);//Block設置
 
                 }
+                InventoryUtil.pop();
             }
         }
     }
