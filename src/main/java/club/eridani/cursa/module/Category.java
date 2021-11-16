@@ -7,8 +7,8 @@ public enum Category {
     MOVEMENT("Movement", true),
     PLAYER("Player", true),
     RENDER("Render", true),
-    CLIENT("Client", true),
     EXPLOIT("Exploit",true),
+    CLIENT("Client", true),
 
     HIDDEN("Hidden", false),
     HUD("HUD" , false);
