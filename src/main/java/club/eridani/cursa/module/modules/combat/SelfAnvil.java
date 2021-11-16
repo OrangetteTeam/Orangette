@@ -40,6 +40,7 @@ public class SelfAnvil extends ModuleBase {
 
     @Override
     public void onTick() {
+        InventoryUtil.push();
         if (!EntityUtil.isPlayerInHole()) {
             error("Not in the hole! disabling");
             return;
@@ -82,6 +83,7 @@ public class SelfAnvil extends ModuleBase {
         if (BlockUtil.getBlock(pos).equals(Blocks.ANVIL)) {
             info("Done Placing! disabling");
         }
+        InventoryUtil.pop();
 
     }
 

@@ -44,6 +44,7 @@ public class AutoCity extends ModuleBase {
 
     @Override
     public void onTick() {
+        InventoryUtil.push();
         if (slot == -1 || Objects.isNull(pos)) {
             slot = InventoryUtil.getItemHotbar(Items.DIAMOND_PICKAXE);
             if (slot == -1) {
@@ -68,6 +69,7 @@ public class AutoCity extends ModuleBase {
         if (BlockUtil.getBlock(pos).equals(Blocks.AIR)) {
             info("Done breaking! disabling");
         }
+        InventoryUtil.pop();
     }
 
     @Override

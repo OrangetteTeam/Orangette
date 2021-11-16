@@ -7,7 +7,9 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
 public class InventoryUtil {
+
     private static Minecraft mc = Minecraft.getMinecraft();
+    private static int currentItem;
 
     public static int getBlockHotbar(Block blockIn) {
         for (int i = 0; i < 9; ++i) {
@@ -28,4 +30,13 @@ public class InventoryUtil {
         }
         return -1;
     }
+
+    public static void push() {
+        currentItem = mc.player.inventory.currentItem;
+    }
+
+    public static void pop() {
+        mc.player.inventory.currentItem = currentItem;
+    }
+
 }
