@@ -103,6 +103,7 @@ public abstract class MixinMinecraft {
             displayGuiScreen(new MainMenu());
             ci.cancel();
         }
+
     }
 
 }
