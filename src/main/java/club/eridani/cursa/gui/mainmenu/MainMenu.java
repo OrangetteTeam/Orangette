@@ -6,6 +6,7 @@ import club.eridani.cursa.utils.AnimationUtils;
 import club.eridani.cursa.utils.ClickUtils;
 import club.eridani.cursa.utils.RenderUtil;
 import net.minecraft.client.gui.*;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
@@ -14,7 +15,7 @@ import java.util.List;
 
 public class MainMenu extends GuiScreen {
 
-    private ResourceLocation background;
+    private final ResourceLocation background;
     private int animatedX, animatedY;
     private List<CustomButton> buttons;
     private ParticleManager pm;
@@ -31,15 +32,18 @@ public class MainMenu extends GuiScreen {
         buttons.add(new CustomButton("MultiPlayer", new ResourceLocation("orangette/icon/multiplayer.png"), new GuiMultiplayer(this)));
         buttons.add(new CustomButton("Language", new ResourceLocation("orangette/icon/language.png"), new GuiLanguage(this, mc.gameSettings, mc.getLanguageManager())));
         buttons.add(new CustomButton("Settings", new ResourceLocation("orangette/icon/setting.png"), new GuiOptions(this, mc.gameSettings)));
-        buttons.add(new CustomButton("AltManager", new ResourceLocation("orangette/icon/altmanager.png"), null/*GuiAltManager.instance*/));
+        //buttons.add(new CustomButton("AltManager", new ResourceLocation("orangette/icon/altmanager.png"), null/*GuiAltManager.instance*/));
         super.initGui();
     }
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+        GlStateManager.pushMatrix();
+        GlStateManager.enableAlpha();
+        GlStateManager.enableTexture2D();
         ScaledResolution sr = new ScaledResolution(mc);
         mc.getTextureManager().bindTexture(background);
-        this.drawModalRectWithCustomSizedTexture(-this.animatedX/4, -this.animatedY/3, 0, 0, sr.getScaledWidth()/3*4, sr.getScaledHeight()/3*4, sr.getScaledWidth()/3*4, sr.getScaledHeight()/3*4);
+        drawModalRectWithCustomSizedTexture(-this.animatedX/4, -this.animatedY/3, 0, 0, sr.getScaledWidth()/3*4, sr.getScaledHeight()/3*4, sr.getScaledWidth()/3*4, sr.getScaledHeight()/3*4);
         //mc.getTextureManager().bindTexture(new ResourceLocation("orangette/logo.png"));
         //Gui.drawModalRectWithCustomSizedTexture(0, 0, 0F, 0F, 125, 49, 125, 49);
         int xOffset = sr.getScaledWidth()/2-180;
@@ -54,6 +58,20 @@ public class MainMenu extends GuiScreen {
         pm.render(mouseX, mouseY, sr);
         animatedX += ((mouseX-animatedX) / 1.8) + 0.1;
         animatedY += ((mouseY-animatedY) / 1.8) + 0.1;
+        GlStateManager.disableTexture2D();
+        GlStateManager.disableAlpha();
+        GlStateManager.popMatrix();
+    }
+
+    @Override
+    public void mouseClicked(int mouseX , int mouseY , int mouseButton) {
+        for(CustomButton cb : buttons) {
+            cb.onClicked(mouseX , mouseY , mouseButton);
+        }
+    }
+
+    @Override
+    public void keyTyped(char typedChar , int keyCode) {
     }
 
     private class CustomButton {

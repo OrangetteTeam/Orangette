@@ -4,18 +4,23 @@ import club.eridani.cursa.Cursa;
 import club.eridani.cursa.client.ConfigManager;
 import club.eridani.cursa.event.decentraliized.DecentralizedClientTickEvent;
 import club.eridani.cursa.event.events.client.*;
+import club.eridani.cursa.gui.mainmenu.MainMenu;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.crash.CrashReport;
 import org.lwjgl.input.Keyboard;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import javax.annotation.Nullable;
+
 @Mixin(Minecraft.class)
-public class MixinMinecraft {
+public abstract class MixinMinecraft {
     @Inject(method = "displayGuiScreen", at = @At("HEAD"), cancellable = true)
     public void displayGuiScreen(GuiScreen guiScreenIn, CallbackInfo info) {
         if (Minecraft.getMinecraft().currentScreen != null) {
@@ -87,6 +92,17 @@ public class MixinMinecraft {
         System.out.println("Shutting down: saving " + Cursa.MOD_NAME + " configuration");
         ConfigManager.saveAll();
         System.out.println("Configuration saved.");
+    }
+
+    @Shadow
+    public abstract void displayGuiScreen(@Nullable GuiScreen guiScreenIn);
+
+    @Inject(method = "displayGuiScreen", at = @At(value = "HEAD") , cancellable = true)
+    public void displayMainMenu(@Nullable GuiScreen guiScreenIn , CallbackInfo ci) {
+        if(guiScreenIn == null || guiScreenIn instanceof GuiMainMenu) {
+            displayGuiScreen(new MainMenu());
+            ci.cancel();
+        }
     }
 
 }
