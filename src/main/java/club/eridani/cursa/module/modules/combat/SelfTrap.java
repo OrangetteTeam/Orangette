@@ -3,6 +3,7 @@ package club.eridani.cursa.module.modules.combat;
 import club.eridani.cursa.common.annotations.Module;
 import club.eridani.cursa.module.Category;
 import club.eridani.cursa.module.ModuleBase;
+import club.eridani.cursa.notification.NotificationManager;
 import club.eridani.cursa.setting.Setting;
 import club.eridani.cursa.utils.BlockInteractionHelper;
 import club.eridani.cursa.utils.EntityUtil;
@@ -21,34 +22,38 @@ public class SelfTrap extends ModuleBase {
 
     @Override
     public void onTick() {
-        {
-
-            BlockPos[] block = new BlockPos[]{};
-            block = new BlockPos[]{
+        BlockPos[] block = new BlockPos[]{};
+        block = new BlockPos[]{
                     new BlockPos(0, 0, 1),
                     new BlockPos(0, 1, 1),
                     new BlockPos(0, 2, 1),
                     new BlockPos(0, 2, 0)
             };
-            
-            {
-                InventoryUtil.push();
-                entity = mc.player;
-                if (entity == null) disable();
-                BlockPos pos = new BlockPos(entity);
 
-                ob = InventoryUtil.getBlockHotbar(Blocks.OBSIDIAN);//黒曜石をHotbarから探す
-                mc.player.inventory.currentItem = ob;//上で探したものに切り替え
-                mc.playerController.updateController();//操作を更新
-                for (BlockPos add : block) {
+            InventoryUtil.push();
 
-                    BlockInteractionHelper.placeBlock(pos.add(add), false);//Block設置
+            if (nullCheck()) disable();
+            BlockPos pos = new BlockPos( mc.player);
 
-                }
-                InventoryUtil.pop();
-                if (autoDisable.getValue() == true)
-                    disable();
+            ob = InventoryUtil.getBlockHotbar(Blocks.OBSIDIAN);//黒曜石をHotbarから探す
+            if (ob == -1) {
+                error("Cannot find obsidian! disabling");
+                return;
             }
-        }
+            mc.player.inventory.currentItem = ob;//上で探したものに切り替え
+            mc.playerController.updateController();//操作を更新
+
+            for (BlockPos add : block) {
+                BlockInteractionHelper.placeBlock(pos.add(add), false);//Block設置
+            }
+
+            InventoryUtil.pop();
+
+            if (autoDisable.getValue() == true)
+                disable();
+    }
+    public void error(String msg) {
+        NotificationManager.error(msg);
+        disable();
     }
 }
