@@ -99,7 +99,7 @@ public abstract class MixinMinecraft {
 
     @Inject(method = "displayGuiScreen", at = @At(value = "HEAD") , cancellable = true)
     public void displayMainMenu(@Nullable GuiScreen guiScreenIn , CallbackInfo ci) {
-        if(guiScreenIn == null || guiScreenIn instanceof GuiMainMenu) {
+        if((guiScreenIn == null && Minecraft.getMinecraft().world == null) || guiScreenIn instanceof GuiMainMenu) {
             displayGuiScreen(new MainMenu());
             ci.cancel();
         }
