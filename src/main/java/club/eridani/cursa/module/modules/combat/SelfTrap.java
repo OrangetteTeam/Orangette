@@ -3,6 +3,7 @@ package club.eridani.cursa.module.modules.combat;
 import club.eridani.cursa.common.annotations.Module;
 import club.eridani.cursa.module.Category;
 import club.eridani.cursa.module.ModuleBase;
+import club.eridani.cursa.setting.Setting;
 import club.eridani.cursa.utils.BlockInteractionHelper;
 import club.eridani.cursa.utils.EntityUtil;
 import club.eridani.cursa.utils.InventoryUtil;
@@ -16,6 +17,7 @@ public class SelfTrap extends ModuleBase {
     int ob;
     EntityPlayer entity;
 
+    public Setting<Boolean> autoDisable = setting(" AutoDisable", true);
 
     @Override
     public void onTick() {
@@ -30,6 +32,7 @@ public class SelfTrap extends ModuleBase {
             };
             
             {
+                InventoryUtil.push();
                 entity = mc.player;
                 if (entity == null) disable();
                 BlockPos pos = new BlockPos(entity);
@@ -42,6 +45,9 @@ public class SelfTrap extends ModuleBase {
                     BlockInteractionHelper.placeBlock(pos.add(add), false);//Block設置
 
                 }
+                InventoryUtil.pop();
+                if (autoDisable.getValue() == true)
+                    disable();
             }
         }
     }

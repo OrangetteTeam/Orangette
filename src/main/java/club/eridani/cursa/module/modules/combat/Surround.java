@@ -21,6 +21,7 @@ public class Surround extends ModuleBase {
     int ob;
     EntityPlayer entity;
 
+    public Setting<Boolean> autoDisable = setting(" AutoDisable", true);
 
     @Override
     public void onTick() {
@@ -53,12 +54,14 @@ public class Surround extends ModuleBase {
                     disable();
                     return;
                 }
+                InventoryUtil.push();
                 mc.player.inventory.currentItem = ob;//上で探したものに切り替え
                 mc.playerController.updateController();//操作を更新
                 for (BlockPos add : block) {
 
                     BlockInteractionHelper.placeBlock(pos.add(add), false);//Block設置
                 }
+                InventoryUtil.pop();
             }
         }
     }
@@ -67,6 +70,9 @@ public class Surround extends ModuleBase {
     public void onKeyEvent(KeyEvent event) {
         if (event.getKey() == mc.gameSettings.keyBindJump.getKeyCode()) {
             disable();
+
+            if (autoDisable.getValue() == true)
+                disable();
         }
     }
 }
