@@ -108,13 +108,13 @@ public class Blocker extends ModuleBase {
             InventoryUtil.push();
             mc.player.inventory.currentItem = obby;
             mc.playerController.updateController();
-            InventoryUtil.pop();
 
             if (BlockUtil.getBlock(pos).equals(Blocks.AIR)) {
                 BlockInteractionHelper.placeBlock(pos, packetPlace.getValue());
                 BlockInteractionHelper.rightClickBlock(pos , EnumFacing.UP , packetPlace.getValue());
             } else {
                 BlockInteractionHelper.placeBlock(pos.add(0 , 1 , 0), packetPlace.getValue());
+                InventoryUtil.pop();
             }
 
             iterator.remove();

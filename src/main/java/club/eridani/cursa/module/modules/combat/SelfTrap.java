@@ -43,6 +43,8 @@ public class SelfTrap extends ModuleBase {
                 for (BlockPos add : block) {
 
                     BlockInteractionHelper.placeBlock(pos.add(add), false);//Block設置
+                if (ob != -1)
+                    disable();
 
                 }
                 InventoryUtil.pop();
