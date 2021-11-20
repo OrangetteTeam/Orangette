@@ -104,8 +104,11 @@ public class Blocker extends ModuleBase {
 
             int obby = InventoryUtil.getBlockHotbar(Blocks.OBSIDIAN);
             if (obby == -1) continue;
+
+            InventoryUtil.push();
             mc.player.inventory.currentItem = obby;
             mc.playerController.updateController();
+            InventoryUtil.pop();
 
             if (BlockUtil.getBlock(pos).equals(Blocks.AIR)) {
                 BlockInteractionHelper.placeBlock(pos, packetPlace.getValue());
