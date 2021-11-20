@@ -67,7 +67,7 @@ public class MainMenu extends GuiScreen {
     public void mouseClicked(int mouseX , int mouseY , int mouseButton) {
         for(CustomButton cb : buttons) {
             cb.onClicked(mouseX , mouseY , mouseButton);
-        }
+        } 
     }
 
     @Override
