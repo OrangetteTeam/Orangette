@@ -36,7 +36,7 @@ public class Rumia extends Hud {
     @Override
     public void renderHud() {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-            mc.getTextureManager().bindTexture(new ResourceLocation("orangette/" + "awa/" + awa + ".png"));
+            mc.getTextureManager().bindTexture(new ResourceLocation("orangette/" + "awa/" + awa + ".gif"));
             RenderHelper.disableStandardItemLighting();
             GlStateManager.enableBlend();
             GlStateManager.disableCull();
