@@ -56,6 +56,7 @@ public class Surround extends ModuleBase {
         mc.playerController.updateController();//操作を更新
 
         for (BlockPos add : block) {
+            mc.player.setPosition(pos.getX() + 0.5, pos.getY(),pos.getZ() + 0.5);
             BlockInteractionHelper.placeBlock(pos.add(add), false);//Block設置
         }
 
