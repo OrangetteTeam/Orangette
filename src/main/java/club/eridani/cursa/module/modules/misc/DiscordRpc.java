@@ -15,7 +15,7 @@ import java.util.Objects;
 @Module(name = "DiscordRpc", category = Category.MISC)
 public class DiscordRpc extends ModuleBase {
 
-    public Setting<String> icon = setting("Icon","orange","orange","pekora");
+    public Setting<String> icon = setting("Icon", "orange", "orange", "pekora", "shirakami","hutao");
 
     public static RPCManager INSTANCE;
     private Thread _thread = null;
@@ -40,8 +40,8 @@ public class DiscordRpc extends ModuleBase {
             {
                 while (!Thread.currentThread().isInterrupted()) {
                     lib.Discord_RunCallbacks();
-                    presence.details = getDetails();
-                    presence.state = getState();
+                    presence.details = "Welcome Orangette";
+                    presence.state = getDetails();
                     presence.largeImageKey = "logo";
                     presence.largeImageText = Cursa.MOD_VERSION;
                     lib.Discord_UpdatePresence(presence);
@@ -55,7 +55,7 @@ public class DiscordRpc extends ModuleBase {
 
             _thread.start();
         }
-        if (icon.getValue().equals("pekora")){
+        if (icon.getValue().equals("pekora")) {
             DiscordRPC lib = DiscordRPC.INSTANCE;
             String applicationId = "911525316013482024";
             String steamId = "";
@@ -69,8 +69,68 @@ public class DiscordRpc extends ModuleBase {
             {
                 while (!Thread.currentThread().isInterrupted()) {
                     lib.Discord_RunCallbacks();
-                    presence.details = getDetails();
-                    presence.state = getState();
+                    presence.details = "Welcome Orangette";
+                    presence.state = getDetails();
+                    presence.largeImageKey = "logo";
+                    presence.largeImageText = Cursa.MOD_VERSION;
+                    lib.Discord_UpdatePresence(presence);
+
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException ignored) {
+                    }
+                }
+            }, "RPC-Callback-Handler");
+
+            _thread.start();
+
+        }
+        if (icon.getValue().equals("shirakami")) {
+            DiscordRPC lib = DiscordRPC.INSTANCE;
+            String applicationId = "912263778618449921";
+            String steamId = "";
+            DiscordEventHandlers handlers = new DiscordEventHandlers();
+            lib.Discord_Initialize(applicationId, handlers, true, steamId);
+            DiscordRichPresence presence = new DiscordRichPresence();
+            presence.startTimestamp = System.currentTimeMillis() / 1000; // epoch second
+            lib.Discord_UpdatePresence(presence);
+            presence.largeImageText = "";
+            _thread = new Thread(() ->
+            {
+                while (!Thread.currentThread().isInterrupted()) {
+                    lib.Discord_RunCallbacks();
+                    presence.details = "Welcome Orangette";
+                    presence.state = getDetails();
+                    presence.largeImageKey = "logo";
+                    presence.largeImageText = Cursa.MOD_VERSION;
+                    lib.Discord_UpdatePresence(presence);
+
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException ignored) {
+                    }
+                }
+            }, "RPC-Callback-Handler");
+
+            _thread.start();
+
+        }
+        if (icon.getValue().equals("hutao")) {
+            DiscordRPC lib = DiscordRPC.INSTANCE;
+            String applicationId = "912286699051171840";
+            String steamId = "";
+            DiscordEventHandlers handlers = new DiscordEventHandlers();
+            lib.Discord_Initialize(applicationId, handlers, true, steamId);
+            DiscordRichPresence presence = new DiscordRichPresence();
+            presence.startTimestamp = System.currentTimeMillis() / 1000; // epoch second
+            lib.Discord_UpdatePresence(presence);
+            presence.largeImageText = "";
+            _thread = new Thread(() ->
+            {
+                while (!Thread.currentThread().isInterrupted()) {
+                    lib.Discord_RunCallbacks();
+                    presence.details = "Welcome Orangette";
+                    presence.state = getDetails();
                     presence.largeImageKey = "logo";
                     presence.largeImageText = Cursa.MOD_VERSION;
                     lib.Discord_UpdatePresence(presence);
@@ -87,6 +147,7 @@ public class DiscordRpc extends ModuleBase {
         }
 
     }
+
 
     public void onDisable() {
         DiscordRPC.INSTANCE.Discord_Shutdown();

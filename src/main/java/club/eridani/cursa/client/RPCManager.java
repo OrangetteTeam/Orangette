@@ -1,6 +1,8 @@
 package club.eridani.cursa.client;
 
 import club.eridani.cursa.Cursa;
+import club.eridani.cursa.module.modules.misc.DiscordRpc;
+import club.eridani.cursa.module.modules.misc.DiscordRpc;
 import club.minnced.discord.rpc.DiscordEventHandlers;
 import club.minnced.discord.rpc.DiscordRPC;
 import club.minnced.discord.rpc.DiscordRichPresence;
@@ -12,6 +14,7 @@ public class RPCManager {
     public static Minecraft mc = Minecraft.getMinecraft();
     public static RPCManager INSTANCE;
     private Thread _thread = null;
+
 
     public static void init() {
         INSTANCE = new RPCManager();
