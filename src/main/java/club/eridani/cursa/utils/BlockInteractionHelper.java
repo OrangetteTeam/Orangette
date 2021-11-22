@@ -59,6 +59,17 @@ public class BlockInteractionHelper {
         mc.rightClickDelayTimer = 4;
     }
 
+    public static void rightClickBlock(BlockPos pos, EnumFacing facing, Vec3d hVec, boolean packet) {
+        Vec3d hitVec = (new Vec3d((Vec3i) pos)).add(hVec).add((new Vec3d(facing.getDirectionVec())).scale(0.5D));
+
+        if (packet) {
+            rightClickBlock(pos, hitVec, EnumHand.MAIN_HAND, facing);
+        } else {
+            mc.playerController.processRightClickBlock(mc.player, mc.world, pos, facing, hitVec, EnumHand.MAIN_HAND);
+            mc.player.swingArm(EnumHand.MAIN_HAND);
+        }
+    }
+
     public static EnumFacing getPlaceableSide(BlockPos pos) {
         for (EnumFacing side : EnumFacing.values()) {
             BlockPos neighbour = pos.offset(side);
