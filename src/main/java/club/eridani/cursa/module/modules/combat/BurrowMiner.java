@@ -103,9 +103,6 @@ public class BurrowMiner extends ModuleBase {
         for (BlockPos offset : offsets) {
             BlockPos pos = playerPos.add(offset);
             if (PlayerUtil.getDistance(pos) > range.getValue()) continue;
-            if (!BlockUtil.getBlock(pos).equals(Blocks.OBSIDIAN))
-                if (!BlockUtil.getBlock(pos).equals(Blocks.ANVIL))
-                    if (!BlockUtil.getBlock(pos).equals(Blocks.IRON_TRAPDOOR))continue;
             int level = 0;
             BlockPos a = pos.add(offset);
             if (BlockUtil.getBlock(a).equals(Blocks.AIR)) level = 2;
