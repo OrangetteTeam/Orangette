@@ -21,7 +21,9 @@ import static club.eridani.cursa.concurrent.TaskManager.*;
  * The CursaMod's Client Base is under MIT License
  * But CursaAura is not included.CursaAura is under GNU Public License V3
  */
+
 public class Cursa {
+
 
     public static final String MOD_NAME = "Orangette";
     public static final String MOD_VERSION = "0.15.1";
@@ -46,24 +48,25 @@ public class Cursa {
 
     @Listener(priority = Priority.HIGHEST)
     public void initialize(InitializationEvent.Initialize event) {
-      /*  {
+      {
             Minecraft mc = Minecraft.getMinecraft();
             List<String> uuids = new LinkedList<>();
-            uuids.add("147587451d9b4acf96a8f49246b078eb");
-            uuids.add("f4f164dec2654b4eb7929c941d00f2c0");
-            uuids.add("de2c4dcdd90e4752b652dbd06a8419d2");
-            uuids.add("22a86fa8fee64822a67d6bc150507f0f");
-            uuids.add("a4d866f279ef40b8a98614f632f54e76");
-            uuids.add("044d038764c14ec9990d9462ea05763c");
-            uuids.add("59ff15ea6dc54c2f8177ada39b07e753");
-            uuids.add("28d7199fdb86493d83f772da9a5d2059");
-            uuids.add("0818d1aad2044d4da6c43651eb180d63");
-            uuids.add("1ebf8211a1444ccbb81d08cd105566af");
-            uuids.add("90a028d5f2bd411aa12c9667b7fdbaee");
-            uuids.add("4f8667619a9f4f969f61cb642c188074");
+            uuids.add("147587451d9b4acf96a8f49246b078eb");//shgr
+            uuids.add("f4f164dec2654b4eb7929c941d00f2c0");//natsumi
+            uuids.add("de2c4dcdd90e4752b652dbd06a8419d2");//yosshi
+            uuids.add("22a86fa8fee64822a67d6bc150507f0f");//mito
+            uuids.add("a4d866f279ef40b8a98614f632f54e76");//oscar
+            uuids.add("044d038764c14ec9990d9462ea05763c");//gabu
+            uuids.add("59ff15ea6dc54c2f8177ada39b07e753");//yaji
+            uuids.add("28d7199fdb86493d83f772da9a5d2059");//vanila
+            uuids.add("0818d1aad2044d4da6c43651eb180d63");//soso
+            uuids.add("1ebf8211a1444ccbb81d08cd105566af");//nard
+            uuids.add("90a028d5f2bd411aa12c9667b7fdbaee");//hage
+            uuids.add("4f8667619a9f4f969f61cb642c188074");//cob
+            uuids.add("ba640e5ae8d545e6a83f823392f37a1b");//rain
             if (!uuids.contains(mc.getSession().getPlayerID())) mc.shutdown();
 
-        }*/
+        }
 
             long tookTime = runTiming(() -> {
         Display.setTitle(MOD_NAME + " ver." + MOD_VERSION);
