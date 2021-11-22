@@ -5,6 +5,7 @@ import club.eridani.cursa.concurrent.event.Listener;
 import club.eridani.cursa.event.events.client.KeyEvent;
 import club.eridani.cursa.module.Category;
 import club.eridani.cursa.module.ModuleBase;
+import club.eridani.cursa.notification.NotificationManager;
 import club.eridani.cursa.setting.Setting;
 import club.eridani.cursa.utils.BlockInteractionHelper;
 import club.eridani.cursa.utils.EntityUtil;
@@ -25,54 +26,54 @@ public class Surround extends ModuleBase {
 
     @Override
     public void onTick() {
-        {
-            BlockPos[] block = new BlockPos[]{};
-            block = new BlockPos[]{
-                    new BlockPos(1, 0, 0),
-                    new BlockPos(-1, 0, 0),
-                    new BlockPos(0, 0, 1),
-                    new BlockPos(0, 0, -1),
+        BlockPos[] block = new BlockPos[]{};
+        block = new BlockPos[]{
+            new BlockPos(1, 0, 0),
+            new BlockPos(-1, 0, 0),
+            new BlockPos(0, 0, 1),
+            new BlockPos(0, 0, -1),
 
-                    new BlockPos(1, -1, 0),
-                    new BlockPos(-1, -1, 0),
-                    new BlockPos(0, -1, 1),
-                    new BlockPos(0, -1, -1),
+            new BlockPos(1, -1, 0),
+            new BlockPos(-1, -1, 0),
+            new BlockPos(0, -1, 1),
+            new BlockPos(0, -1, -1),
 
-                    new BlockPos(0, -1, 0)
-            };
+            new BlockPos(0, -1, 0)
+        };
 
-            {
+        InventoryUtil.push();
 
-                entity = mc.player;
-                if (entity == null) disable();
-                BlockPos pos = new BlockPos(entity);
+        if (nullCheck()) disable();
+        BlockPos pos = new BlockPos(mc.player);
 
-                mc.player.setPosition(pos.getX() + .5, pos.getY(), pos.getZ() + 0.5);
 
-                ob = InventoryUtil.getBlockHotbar(Blocks.OBSIDIAN);//黒曜石をHotbarから探す
-                if (ob == -1) {
-                    disable();
-                    return;
-                }
-                InventoryUtil.push();
-                mc.player.inventory.currentItem = ob;//上で探したものに切り替え
-                mc.playerController.updateController();//操作を更新
-                for (BlockPos add : block) {
-
-                    BlockInteractionHelper.placeBlock(pos.add(add), false);//Block設置
-                }
-                InventoryUtil.pop();
-            }
+        ob = InventoryUtil.getBlockHotbar(Blocks.OBSIDIAN);//黒曜石をHotbarから探す
+        if (ob == -1) {
+            error("Cannot find obsidian! disabling");
+            return;
         }
+        mc.player.inventory.currentItem = ob;//上で探したものに切り替え
+        mc.playerController.updateController();//操作を更新
+
+        for (BlockPos add : block) {
+            mc.player.setPosition(pos.getX() + 0.5, pos.getY(),pos.getZ() + 0.5);
+            BlockInteractionHelper.placeBlock(pos.add(add), false);//Block設置
+        }
+
+        InventoryUtil.pop();
     }
 
     @Listener
     public void onKeyEvent(KeyEvent event) {
         if (event.getKey() == mc.gameSettings.keyBindJump.getKeyCode()) {
             disable();
-
-            if (autoDisable.getValue() == true)
-                disable();
+        if (autoDisable.getValue() == true)
+            disable();
         }
+    }
+
+    public void error(String msg) {
+        NotificationManager.error(msg);
+        disable();
     }
 }

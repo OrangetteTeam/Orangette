@@ -20,7 +20,7 @@ public class WaterMark extends Hud {
     int Logo;
     int Text;
     public static final String MOD_NAME = "Orangette";
-    public static final String MOD_VERSION = "0.15";
+    public static final String MOD_VERSION = "0.15.1";
     Setting<String> mode = setting("mode","Logo","Logo","Text");
 
     @Override
