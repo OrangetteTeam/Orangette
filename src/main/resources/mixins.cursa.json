@@ -11,6 +11,7 @@
     "accessor.AccessorRenderManager",
     "accessor.AccessorSPacketEntityVelocity",
     "accessor.AccessorSPacketExplosion",
+    "accessor.AccessorSplashProgress",
     "client.MixinMinecraft",
     "entity.MixinEntityPlayerSP",
     "network.MixinNetWork",
@@ -22,7 +23,8 @@
     "render.MixinMapItemRenderer",
     "render.MixinRenderFallingBlock",
     "render.MixinRenderItemFrame",
-    "render.MixinRenderXPOrb"
+    "render.MixinRenderXPOrb",
+    "render.MixinSplashProgress"
   ],
   "client": [
     "entity.MixinAbstractClientPlayer",
