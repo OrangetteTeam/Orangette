@@ -15,17 +15,23 @@ import java.util.List;
 
 public class MainMenu extends GuiScreen {
 
-    private final ResourceLocation background;
+    private ResourceLocation background1, background2, background3, background4, background5;
     private int animatedX, animatedY;
     private List<CustomButton> buttons;
     private ParticleManager pm;
+    private int tick, bg;
 
     public MainMenu() {
-        background = new ResourceLocation("orangette/background/mainmenu.png");
+        background1 = new ResourceLocation("orangette/background/mainmenu1.png");
+        background2 = new ResourceLocation("orangette/background/mainmenu2.png");
+        background3 = new ResourceLocation("orangette/background/mainmenu3.png");
+        background4 = new ResourceLocation("orangette/background/mainmenu4.png");
+        background5 = new ResourceLocation("orangette/background/mainmenu5.png");
     }
 
     @Override
     public void initGui() {
+        tick = 0;
         buttons = new LinkedList<>();
         pm = new ParticleManager();
         buttons.add(new CustomButton("SinglePlayer", new ResourceLocation("orangette/icon/singleplayer.png"), new GuiWorldSelection(this)));
@@ -39,11 +45,16 @@ public class MainMenu extends GuiScreen {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+        tick ++;
+        if (tick%(20*30)==0) {
+            bg = bg==4?0:bg + 1;
+        }
+        ResourceLocation[] background = new ResourceLocation[] {background1, background2, background3, background4, background5};
         GlStateManager.pushMatrix();
         GlStateManager.enableAlpha();
         GlStateManager.enableTexture2D();
         ScaledResolution sr = new ScaledResolution(mc);
-        mc.getTextureManager().bindTexture(background);
+        mc.getTextureManager().bindTexture(background[bg]);
         drawModalRectWithCustomSizedTexture(-this.animatedX/4, -this.animatedY/3, 0, 0, sr.getScaledWidth()/3*4, sr.getScaledHeight()/3*4, sr.getScaledWidth()/3*4, sr.getScaledHeight()/3*4);
         //mc.getTextureManager().bindTexture(new ResourceLocation("orangette/logo.png"));
         //Gui.drawModalRectWithCustomSizedTexture(0, 0, 0F, 0F, 125, 49, 125, 49);
