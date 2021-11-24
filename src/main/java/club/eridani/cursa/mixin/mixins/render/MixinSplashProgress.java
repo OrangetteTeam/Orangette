@@ -240,6 +240,6 @@ public class MixinSplashProgress {
 
     private static void scissor(float x, float y, float width, float height, float guiScale) {
         float p = Display.getWidth() / 854.0F;
-        GL11.glScissor(0, (int) (Display.getHeight() - (y + height) * scale), (int) ((width + x) * p * guiScale), (int) (height * scale));
+        GL11.glScissor(0, (int) (Display.getHeight() - (y + height) * p), (int) ((width + x) * p * guiScale), (int) (height * p));
     }
 }
