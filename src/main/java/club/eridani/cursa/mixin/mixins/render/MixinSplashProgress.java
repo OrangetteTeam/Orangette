@@ -145,10 +145,10 @@ public class MixinSplashProgress {
                         Display.sync(100);
                     }
                 }
-                clearGL();
                 background.delete();
                 bar0.delete();
                 bar1.delete();
+                clearGL();
             }
 
             private void setColor(int color) {
