@@ -19,6 +19,7 @@ import net.minecraft.util.math.BlockPos;
 public class AutoCover extends ModuleBase {
 
     Setting<Double> range = setting("Range", 3.0, 0.1, 6.0);
+    Setting<Boolean> autoDisable = setting("AutoDisable", true);
 
     int ob;
     EntityPlayer entity;
@@ -41,9 +42,9 @@ public class AutoCover extends ModuleBase {
             BlockPos[] block = new BlockPos[]{};
             block = new BlockPos[]{
 
-                    new BlockPos(0, 0, 1),
-                    new BlockPos(0, 1, 1),
-                    new BlockPos(0, 2, 1),
+                    new BlockPos(1, 0, 0),
+                    new BlockPos(1, 1, 0),
+                    new BlockPos(1, 2, 0),
                     new BlockPos(0, 2, 0)
             };
 
@@ -67,8 +68,10 @@ public class AutoCover extends ModuleBase {
             InventoryUtil.pop();
 
         }
+        if (autoDisable.equals(true)) {
+            disable();
 
+        }
 
     }
-
 }
