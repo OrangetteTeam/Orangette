@@ -19,8 +19,6 @@ public class WaterMark extends Hud {
 
     int Logo;
     int Text;
-    public static final String MOD_NAME = "Orangette";
-    public static final String MOD_VERSION = "0.15.1";
     Setting<String> mode = setting("mode","Logo","Logo","Text");
 
     @Override
@@ -46,7 +44,7 @@ public class WaterMark extends Hud {
                 break;
 
             case "Text":
-                String str =  MOD_NAME + " " + "ver" + MOD_VERSION;
+                String str =  Cursa.MOD_NAME + " " + "ver" + Cursa.MOD_VERSION;
                 RenderUtil.drawString(str, getX(), getY(), Color.cyan, true);
                 setSize(RenderUtil.getStringWidth(str), RenderUtil.getStringHeight());
         }
