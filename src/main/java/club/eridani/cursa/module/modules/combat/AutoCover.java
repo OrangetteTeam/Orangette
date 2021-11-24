@@ -68,7 +68,7 @@ public class AutoCover extends ModuleBase {
             InventoryUtil.pop();
 
         }
-        if (autoDisable.equals(true)) {
+        if (autoDisable.getValue()) {
             disable();
 
         }
