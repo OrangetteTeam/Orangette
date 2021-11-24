@@ -24,7 +24,7 @@ import java.util.concurrent.locks.Lock;
 
 import static org.lwjgl.opengl.GL11.*;
 
-@Mixin(value = SplashProgress.class)
+@Mixin(value = SplashProgress.class , priority = 1)
 public class MixinSplashProgress {
     private static volatile boolean pause = false;
     private static volatile boolean done = false;
