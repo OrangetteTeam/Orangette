@@ -24,8 +24,9 @@ import java.util.concurrent.locks.Lock;
 
 import static org.lwjgl.opengl.GL11.*;
 
-@Mixin(value = SplashProgress.class , priority = 1)
+@Mixin(value = SplashProgress.class)
 public class MixinSplashProgress {
+    /*
     private static volatile boolean pause = false;
     private static volatile boolean done = false;
     private static int backgroundColor;
@@ -242,4 +243,6 @@ public class MixinSplashProgress {
         float p = Display.getWidth() / 854.0F;
         GL11.glScissor(0, (int) (Display.getHeight() - (y + height) * p), (int) ((width + x) * p * guiScale), (int) (height * p));
     }
+
+     */
 }
