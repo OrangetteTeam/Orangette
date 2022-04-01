@@ -12,8 +12,17 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
 
+import javax.swing.*;
+import java.awt.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static club.eridani.cursa.concurrent.TaskManager.*;
 
@@ -48,23 +57,30 @@ public class Cursa {
 
     @Listener(priority = Priority.HIGHEST)
     public void initialize(InitializationEvent.Initialize event) {
-      {
-            Minecraft mc = Minecraft.getMinecraft();
-            List<String> uuids = new LinkedList<>();
-            uuids.add("147587451d9b4acf96a8f49246b078eb");//shgr
-            uuids.add("f4f164dec2654b4eb7929c941d00f2c0");//natsumi
-            uuids.add("de2c4dcdd90e4752b652dbd06a8419d2");//yosshi
-            uuids.add("22a86fa8fee64822a67d6bc150507f0f");//mito
-            uuids.add("a4d866f279ef40b8a98614f632f54e76");//oscar
-            uuids.add("044d038764c14ec9990d9462ea05763c");//gabu
-            uuids.add("59ff15ea6dc54c2f8177ada39b07e753");//yaji
-            uuids.add("28d7199fdb86493d83f772da9a5d2059");//vanila
-            uuids.add("0818d1aad2044d4da6c43651eb180d63");//soso
-            uuids.add("1ebf8211a1444ccbb81d08cd105566af");//nard
-            uuids.add("90a028d5f2bd411aa12c9667b7fdbaee");//hage
-            uuids.add("4f8667619a9f4f969f61cb642c188074");//cob
-            uuids.add("ba640e5ae8d545e6a83f823392f37a1b");//rain
-            if (!uuids.contains(mc.getSession().getPlayerID())) mc.shutdown();
+        {
+            String s1 = HWID.getHWID();
+            String url = "https://pastebin.com/raw/3YfhRrt0";
+
+            InputStream in = null;
+            try {
+                in = new URL(url).openStream();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            InputStreamReader inputStreamReader = new InputStreamReader(in);
+            Stream<String> streamOfString = new BufferedReader(inputStreamReader).lines();
+            String response = streamOfString.collect(Collectors.joining("\n"));
+
+            if (!(response.contains(s1))) {
+                Minecraft mc = Minecraft.getMinecraft();
+                mc.shutdown();
+
+                UIManager.put("OptionPane.minimumSize",new Dimension(500,80));
+                JOptionPane.showMessageDialog(null, "Your HWID is not on the whitelist","Orangette Hwid-auth", JOptionPane.INFORMATION_MESSAGE);
+                System.exit(0);
+
+            }
 
         }
 
@@ -72,7 +88,7 @@ public class Cursa {
         Display.setTitle(MOD_NAME + " ver." + MOD_VERSION);
         FontManager.init();
         log.info("Loading Module Manager");
-        //ModuleManager is partial parallel loadable
+        //ModuleManager is partial parallel loadaqble
         ModuleManager.init();
         //Parallel load managers
         runBlocking(it -> {
