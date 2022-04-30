@@ -3,6 +3,10 @@ CursaをSkidしています
 
 Eridani Teamに感謝を実行
 
+初期bind o
+
+.bind clickgui 
+
 >Combat
 >>ゴミ
 
